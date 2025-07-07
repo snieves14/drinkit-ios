@@ -16,6 +16,7 @@ struct DrinkItApp: App {
     @StateObject private var appState = AppState()
     
     @State private var isLaunchScreenVisible = true
+    @State private var shouldShowTabBar = true
     
     // MARK: - Body
     var body: some Scene {
@@ -24,6 +25,7 @@ struct DrinkItApp: App {
                 Color.surface.ignoresSafeArea()
                 rootViewBuilder
                     .environmentObject(appState)
+                    .environment(\.shouldShowTabBar, $shouldShowTabBar)
                     .task {
                         try? await Task.sleep(nanoseconds: 2_000_000_000)
                         withAnimation(.easeInOut(duration: 0.8)) {

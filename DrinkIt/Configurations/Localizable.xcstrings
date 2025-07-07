@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "Categories Screen" : {
+
+    },
     "common.appName" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -35,7 +41,16 @@
         }
       }
     },
-    "MainTab Screen" : {
+    "Favorites Screen" : {
+
+    },
+    "Home Screen" : {
+
+    },
+    "My Cocktails Screen" : {
+
+    },
+    "MyIngredients Screen" : {
 
     },
     "onboarding.subtitle" : {
