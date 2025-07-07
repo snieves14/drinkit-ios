@@ -10,8 +10,9 @@ import SwiftUI
 struct CategoriesScreen: View {
     var body: some View {
         VStack {
-            Text("Categories Screen")
+            TabHeaderView(tabHeader: .categories)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }

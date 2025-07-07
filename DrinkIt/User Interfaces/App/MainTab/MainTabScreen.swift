@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - Enums
 private enum TabbedItems: Int, CaseIterable {
     case home = 0
     case categories

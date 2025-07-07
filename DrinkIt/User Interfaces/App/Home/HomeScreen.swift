@@ -10,8 +10,9 @@ import SwiftUI
 struct HomeScreen: View {
     var body: some View {
         VStack {
-            Text("Home Screen")
+            TabHeaderView(tabHeader: .home)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }

@@ -8,6 +8,11 @@
 import UIKit
 
 struct AppStyle {
+    struct VerticalPadding {
+        static let small: CGFloat = 5
+        static let regular: CGFloat = 10
+        static let large: CGFloat = 15
+    }
     struct HorizontalPadding {
         static let small: CGFloat = 8
         static let regular: CGFloat = 16

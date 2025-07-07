@@ -10,8 +10,9 @@ import SwiftUI
 struct FavoritesScreen: View {
     var body: some View {
         VStack {
-            Text("Favorites Screen")
+            TabHeaderView(tabHeader: .favorites)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }

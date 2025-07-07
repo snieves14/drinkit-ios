@@ -44,17 +44,17 @@ class AppState: ObservableObject {
         resetRoutesArray()
     }
     
-    func isLastRoute() -> Bool {
+    public func isLastRoute() -> Bool {
         return routes[routeIndex].count == 1
     }
     
-    func pushTo(_ route: Route, delay: CGFloat = 0.0) {
+    public func pushTo(_ route: Route, delay: CGFloat = 0.0) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             self.routes[self.routeIndex].append(route)
         }
     }
     
-    func popTo(_ route: Int = 1, delay: CGFloat = 0.0) {
+    public func popTo(_ route: Int = 1, delay: CGFloat = 0.0) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             if route <= self.routes[self.routeIndex].count {
                 self.routes[self.routeIndex].removeLast(route)
@@ -62,14 +62,14 @@ class AppState: ObservableObject {
         }
     }
     
-    func popToRoot(delay: CGFloat = 0.0) {
+    public func popToRoot(delay: CGFloat = 0.0) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             let count = self.routes[self.routeIndex].count
             self.routes[self.routeIndex].removeLast(count)
         }
     }
     
-    func tabBarItemPopToRoot(currentMainTab: Int) {
+    public func tabBarItemPopToRoot(currentMainTab: Int) {
         if routeIndex == currentMainTab && routes[routeIndex].count > 0 {
             popToRoot()
         }

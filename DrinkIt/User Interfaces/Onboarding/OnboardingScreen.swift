@@ -20,9 +20,9 @@ struct OnboardingScreen: View {
                     .customImageStyle(width: 150, height: 150)
                 VStack(spacing: 8) {
                     Text("onboarding.title")
-                        .textStyle(font: .medium, size: 26, textAlignment: .center)
+                        .textStyle(font: .medium, size: 26, textAlignment: .center, alignment: .center)
                     Text("onboarding.subtitle")
-                        .textStyle(font: .regular, size: 20, textAlignment: .center)
+                        .textStyle(font: .regular, size: 20, textAlignment: .center, alignment: .center)
                 }
             }
             Button("common.continue") {

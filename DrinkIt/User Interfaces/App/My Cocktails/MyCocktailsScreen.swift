@@ -10,8 +10,9 @@ import SwiftUI
 struct MyCocktailsScreen: View {
     var body: some View {
         VStack {
-            Text("My Cocktails Screen")
+            TabHeaderView(tabHeader: .myCocktails)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }
