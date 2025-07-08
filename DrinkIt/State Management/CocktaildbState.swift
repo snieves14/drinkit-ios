@@ -34,8 +34,8 @@ class CocktaildbState: ObservableObject {
     
     // MARK: - Random cocktail request
     func random(refreshPolicy: RefreshPolicy = .ifNeeded) async {
-        requestStatus = .unknown
         if shouldRefreshData(refreshPolicy: refreshPolicy) {
+            requestStatus = .unknown
             LoaderManager.shared.startRequest()
             if let response = await CocktaildbWebServices.random() {
                 await MainActor.run {

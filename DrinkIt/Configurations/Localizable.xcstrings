@@ -55,6 +55,9 @@
         }
       }
     },
+    "Empty home" : {
+
+    },
     "favorites.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -156,6 +159,9 @@
           }
         }
       }
+    },
+    "Succes home" : {
+
     }
   },
   "version" : "1.0"

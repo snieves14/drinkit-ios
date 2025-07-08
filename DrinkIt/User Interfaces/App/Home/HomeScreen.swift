@@ -10,24 +10,32 @@ import SwiftUI
 struct HomeScreen: View {
     
     // MARK: - Properties
-    @StateObject private var cocktaildbState = CocktaildbState()
+    @StateObject private var homeState = HomeState()
     
     // MARK: - Body
     var body: some View {
         VStack {
             TabHeaderView(tabHeader: .home)
+            switch homeState.requestStatus {
+            case .success:
+                Text("Succes home")
+            case .empty:
+                Text("Empty home")
+            default:
+                EmptyView()
+            }
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
         .onAppear {
-            fetchRandomCocktail()
+            loadHome()
         }
     }
     
     // MARK: - Private functions
-    private func fetchRandomCocktail() {
+    private func loadHome() {
         Task {
-            await cocktaildbState.random()
+            await homeState.loadHome()
         }
     }
 }
