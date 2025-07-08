@@ -9,6 +9,8 @@
 
 ## Swift Package Manager (SPM)
 
+- Alamofire: HTTP networking library (https://github.com/Alamofire/Alamofire)
+
 
 ## Desing pattern
 

@@ -8,6 +8,10 @@
 import Foundation
 
 extension String {
+    var isNotBlank: Bool {
+        !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
     func localized(comment: String = "", locale: Locale? = nil) -> String {
         guard let bundlePath = Bundle.main.path(forResource: locale?.identifier, ofType: "lproj"), let bundle = Bundle(path: bundlePath) else {
             return NSLocalizedString(self, comment: comment)

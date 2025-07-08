@@ -24,6 +24,7 @@ struct DrinkItApp: App {
             ZStack {
                 Color.surface.ignoresSafeArea()
                 rootViewBuilder
+                    .loaderModifier()
                     .environmentObject(appState)
                     .environment(\.shouldShowTabBar, $shouldShowTabBar)
                     .task {

@@ -12,7 +12,6 @@ import SwiftUI
 class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        print("AppDelegate - applicationDidFinishLaunching")
         /// Set the tint color of UIViews within UIAlertControllers to system blue
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .systemBlue
         /// Set the tint color of UIViews within UIRefreshControl to veryDarkViolet color

@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import Combine
 
 @MainActor
 class AppState: ObservableObject {
     
-    // MARK: - AppStorage(UserDefaults) parameters
+    // MARK: - AppStorage(UserDefaults) properties
     @AppStorage("hasSeenOnboarding") public var hasSeenOnboarding: Bool = false
     
-    // MARK: - Routes parameters
+    // MARK: - Routes properties
     /// This array is composed of 5 elements:
     /// Routes[0] -> Home routes.
     /// Routes[1] -> Categories routes.
@@ -23,9 +24,19 @@ class AppState: ObservableObject {
     @Published var routes: [[Route]] = []
     @Published var routeIndex = 0
     
+    // MARK: - LoaderManager properties
+    @Published var isLoaderPresented: Bool = false
+    private var cancellables = Set<AnyCancellable>()
+    
     init() {
-        print("AppState - init")
         createRoutesArray()
+        
+        LoaderManager.shared.loaderPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] show in
+                self?.isLoaderPresented = show
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Routes Function
