@@ -37,7 +37,7 @@ struct LoaderView: View {
 
 struct LoaderModifier: ViewModifier {
     
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) var appState
     
     func body(content: Content) -> some View {
         content

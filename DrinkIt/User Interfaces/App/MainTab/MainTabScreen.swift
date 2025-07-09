@@ -31,7 +31,7 @@ struct MainTabScreen: View {
     // MARK: - Properties
     @Environment(\.safeAreaInsets) var safeAreaInsets
     @Environment(\.shouldShowTabBar) var shouldShowTabBar
-    @EnvironmentObject var appState: AppState
+    @EnvironmentBindable<AppState> private var appState
     
     // MARK: - Body
     var body: some View {

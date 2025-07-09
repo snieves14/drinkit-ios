@@ -35,7 +35,7 @@ struct BaseViewModifier: ViewModifier {
 struct ToolbarViewModifier: ViewModifier {
     
     @Environment(\.shouldShowTabBar) var shouldShowTabBar
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) var appState
     
     var title: String
     var isBackButtonHidden: Bool

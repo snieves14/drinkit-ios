@@ -9,17 +9,18 @@ import SwiftUI
 import Alamofire
 
 @MainActor
-class HomeState: ObservableObject {
+@Observable
+final class HomeState {
     
     // MARK: - Networking Properties
-    @Published var apiGroup: DispatchGroup = DispatchGroup()
-    @Published var requestStatus: RequestStatus = .unknown
+    var requestStatus: RequestStatus = .unknown
     private var lastRefreshDate: Date?
+    private var apiGroup: DispatchGroup = DispatchGroup()
     
     // MARK: - Data Properties
-    @Published var randomCocktails: [Cocktail] = []
-    @Published var firstLetterCocktails: [Cocktail] = []
-    @Published var ingredientCocktails: [Cocktail] = []
+    var randomCocktails: [Cocktail] = []
+    var firstLetterCocktails: [Cocktail] = []
+    var ingredientCocktails: [Cocktail] = []
     
     // MARK: - Networking functions
     private func shouldRefreshData(refreshPolicy: RefreshPolicy) -> Bool {

@@ -10,9 +10,9 @@ import SwiftUI
 struct HomeScreen: View {
     
     // MARK: - Properties
-    @EnvironmentObject var cocktaildbListsState: CocktaildbListsState
+    @Environment(CocktaildbListsState.self) private var cocktaildbListsState
     
-    @StateObject private var homeState = HomeState()
+    @State private var homeState = HomeState()
     
     // MARK: - Body
     var body: some View {

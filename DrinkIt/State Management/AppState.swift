@@ -7,12 +7,16 @@
 
 import SwiftUI
 import Combine
+import ObservableUserDefault
 
 @MainActor
-class AppState: ObservableObject {
+@Observable
+final class AppState {
     
-    // MARK: - AppStorage(UserDefaults) properties
-    @AppStorage("hasSeenOnboarding") public var hasSeenOnboarding: Bool = false
+    // MARK: - ObservableUserDefault properties
+    @ObservableUserDefault(.init(key: "hasSeenOnboarding", defaultValue: false, store: .standard))
+    @ObservationIgnored
+    var hasSeenOnboarding: Bool
     
     // MARK: - Routes properties
     /// This array is composed of 5 elements:
@@ -21,11 +25,11 @@ class AppState: ObservableObject {
     /// Routes[2] -> Favorites routes.
     /// Routes[3] -> MyIngredients  routes.
     /// Routes[4] -> MyCocktails Routes.
-    @Published var routes: [[Route]] = []
-    @Published var routeIndex = 0
+    var routes: [[Route]] = []
+    var routeIndex = 0
     
     // MARK: - LoaderManager properties
-    @Published var isLoaderPresented: Bool = false
+    var isLoaderPresented: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
     init() {

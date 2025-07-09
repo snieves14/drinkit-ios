@@ -13,8 +13,8 @@ struct DrinkItApp: App {
     // MARK: - Properties
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    @StateObject private var appState = AppState()
-    @StateObject private var cocktaildbListsState = CocktaildbListsState()
+    @State private var appState = AppState()
+    @State private var cocktaildbListsState = CocktaildbListsState()
     
     @State private var isLaunchScreenVisible = true
     @State private var shouldShowTabBar = true
@@ -26,8 +26,8 @@ struct DrinkItApp: App {
                 Color.surface.ignoresSafeArea()
                 rootViewBuilder
                     .loaderModifier()
-                    .environmentObject(appState)
-                    .environmentObject(cocktaildbListsState)
+                    .environment(appState)
+                    .environment(cocktaildbListsState)
                     .environment(\.shouldShowTabBar, $shouldShowTabBar)
                     .task {
                         try? await Task.sleep(nanoseconds: 2_000_000_000)

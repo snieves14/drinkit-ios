@@ -9,10 +9,11 @@ import SwiftUI
 import Alamofire
 
 @MainActor
-class CocktaildbListsState: ObservableObject {
+@Observable
+final class CocktaildbListsState {
     
     // MARK: - Data Properties
-    @Published var ingredientsList: [Cocktail] = []
+    var ingredientsList: [Cocktail] = []
     
     
     // MARK: - Public functions

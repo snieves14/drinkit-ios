@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingScreen: View {
     
     // MARK: - Properties
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState
     
     // MARK: - Body
     var body: some View {

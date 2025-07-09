@@ -6,18 +6,18 @@
 //
 
 import SwiftUI
-import Alamofire
 
 @MainActor
-class CocktaildbState: ObservableObject {
+@Observable
+final class CocktaildbState {
     
     // MARK: - Networking Properties
-    @Published var requestStatus: RequestStatus = .unknown
+    var requestStatus: RequestStatus = .unknown
     private var lastRefreshDate: Date?
     
     // MARK: - Data Properties
-    @Published var drinkResponse: DrinkResponse?
-    @Published var cocktails: [Cocktail] = []
+    var drinkResponse: DrinkResponse?
+    var cocktails: [Cocktail] = []
     
     // MARK: - Networking functions
     private func shouldRefreshData(refreshPolicy: RefreshPolicy) -> Bool {
