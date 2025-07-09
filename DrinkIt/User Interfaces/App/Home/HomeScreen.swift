@@ -20,9 +20,11 @@ struct HomeScreen: View {
             TabHeaderView(tabHeader: .home)
             switch homeState.requestStatus {
             case .success:
-                Text("Succes home")
+               Text("Success home")
             case .empty:
-                Text("Empty home")
+                BlankDataView {
+                    loadHome()
+                }
             default:
                 EmptyView()
             }

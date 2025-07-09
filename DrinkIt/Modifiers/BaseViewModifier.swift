@@ -89,7 +89,7 @@ struct AnimatedTransitionViewModifier: ViewModifier {
             .transition(
                 .asymmetric(
                     insertion: transition.animation(.easeInOut(duration: duration)),
-                    removal: transition.animation(.easeInOut(duration: duration))
+                    removal: transition
                 )
             )
     }

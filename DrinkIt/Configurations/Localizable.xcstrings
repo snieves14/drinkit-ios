@@ -4,6 +4,23 @@
     "" : {
 
     },
+    "blankData.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Something went wrong…\nWe couldn’t load the content right now. Please check your connection or try again"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Vaya! Algo salió mal…\nNo hemos podido cargar el contenido en este momento. Comprueba tu conexión o inténtalo de nuevo"
+          }
+        }
+      }
+    },
     "categories.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -55,8 +72,22 @@
         }
       }
     },
-    "Empty home" : {
-
+    "common.retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reintentar"
+          }
+        }
+      }
     },
     "favorites.title" : {
       "extractionState" : "manual",
@@ -160,7 +191,7 @@
         }
       }
     },
-    "Succes home" : {
+    "Success home" : {
 
     }
   },
