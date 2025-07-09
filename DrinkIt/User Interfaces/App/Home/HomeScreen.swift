@@ -20,7 +20,19 @@ struct HomeScreen: View {
             TabHeaderView(tabHeader: .home)
             switch homeState.requestStatus {
             case .success:
-               Text("Success home")
+                ScrollView {
+                    if !homeState.randomCocktails.isEmpty {
+                        RandomCocktailsView(randomCocktails: homeState.randomCocktails)
+                    }
+                    if !homeState.firstLetterCocktails.isEmpty {
+                        FirstLetterCocktailsView(firstLetter: homeState.firstLetterCharacter, ingredientCocktails: homeState.firstLetterCocktails)
+                    }
+                    if !homeState.ingredientCocktails.isEmpty {
+                        IngredientCocktailsView(ingredientName: homeState.randomIngredient, ingredientCocktails: homeState.ingredientCocktails)
+                    }
+                }
+                .scrollViewStyle()
+                .withTransition()
             case .empty:
                 BlankDataView {
                     loadHome()
@@ -30,6 +42,7 @@ struct HomeScreen: View {
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
+        .padding(.bottom, -6) ///ScrollView flush with the TabBar
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
         .onAppear {
             loadHome()

@@ -21,6 +21,8 @@ final class HomeState {
     var randomCocktails: [Cocktail] = []
     var firstLetterCocktails: [Cocktail] = []
     var ingredientCocktails: [Cocktail] = []
+    var firstLetterCharacter: Character = Character.randomLowercaseLetter
+    var randomIngredient: String = ""
     
     // MARK: - Networking functions
     private func shouldRefreshData(refreshPolicy: RefreshPolicy) -> Bool {
@@ -52,6 +54,8 @@ final class HomeState {
     func loadHome(refreshPolicy: RefreshPolicy = .ifNeeded, randomIngredient: String?) async {
         if shouldRefreshData(refreshPolicy: refreshPolicy) {
             requestStatus = .unknown
+            self.firstLetterCharacter = Character.randomLowercaseLetter
+            self.randomIngredient = randomIngredient ?? Utils.Defaults.ingredient
             LoaderManager.shared.startRequest()
             
             setApiGroup(times: 7)
@@ -65,7 +69,7 @@ final class HomeState {
                     await self.searchByFirstLetter()
                 }
                 group.addTask {
-                    await self.filterByIngredient(randomIngredient: randomIngredient ?? "Vodka")
+                    await self.filterByIngredient()
                 }
             }
         }
@@ -88,7 +92,7 @@ final class HomeState {
     // MARK: - Search by first letter request
     private func searchByFirstLetter() async {
         let parameters: Parameters = [
-            "f" : Character.randomLowercaseLetter
+            "f" : firstLetterCharacter
         ]
         if let response = await CocktaildbWebServices.search(parameters: parameters) {
             await MainActor.run {
@@ -101,7 +105,7 @@ final class HomeState {
     }
     
     // MARK: - Filter by ingredient request
-    private func filterByIngredient(randomIngredient: String) async {
+    private func filterByIngredient() async {
         let parameters: Parameters = [
             "i": randomIngredient
         ]

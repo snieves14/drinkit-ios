@@ -79,6 +79,15 @@ struct ToolbarViewModifier: ViewModifier {
     }
 }
 
+struct ScrollViewModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .scrollBounceBehavior(.basedOnSize)
+            .scrollIndicators(.hidden)
+    }
+}
+
 struct AnimatedTransitionViewModifier: ViewModifier {
     
     var transition: AnyTransition
@@ -103,6 +112,10 @@ extension View {
     
     fileprivate func toolbarStyle(title: String = "", isBackButtonHidden : Bool = false, isTitleHidden : Bool = false, popTo: Int = 1) -> some View {
         self.modifier(ToolbarViewModifier(title: title, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo))
+    }
+    
+    public func scrollViewStyle() -> some View {
+        self.modifier(ScrollViewModifier())
     }
     
     public func withTransition(transition: AnyTransition = .opacity, duration: TimeInterval = 0.4) -> some View {

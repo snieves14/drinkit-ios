@@ -42,3 +42,16 @@ struct tabItemButtonStyle : ButtonStyle {
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }
+
+struct pillButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .textStyle(font: .regular, size: 12, foregroundColor: .surface)
+            .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            .frame(height: 30)
+            .background(.tertiaryBrand)
+            .clipShape(Capsule())
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+    }
+}
