@@ -21,7 +21,7 @@ final class HomeState {
     var randomCocktails: [Cocktail] = []
     var firstLetterCocktails: [Cocktail] = []
     var ingredientCocktails: [Cocktail] = []
-    var firstLetterCharacter: Character = Character.randomLowercaseLetter
+    var firstLetterCharacter: Character = " "
     var randomIngredient: String = ""
     
     // MARK: - Networking functions
