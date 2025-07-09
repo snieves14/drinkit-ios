@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeScreen: View {
     
     // MARK: - Properties
+    @EnvironmentObject var cocktaildbListsState: CocktaildbListsState
+    
     @StateObject private var homeState = HomeState()
     
     // MARK: - Body
@@ -35,7 +37,8 @@ struct HomeScreen: View {
     // MARK: - Private functions
     private func loadHome() {
         Task {
-            await homeState.loadHome()
+            await cocktaildbListsState.listOfIngredients()
+            await homeState.loadHome(randomIngredient: cocktaildbListsState.randomIngredientName())
         }
     }
 }

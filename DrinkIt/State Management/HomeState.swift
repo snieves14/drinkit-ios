@@ -19,7 +19,6 @@ class HomeState: ObservableObject {
     // MARK: - Data Properties
     @Published var randomCocktails: [Cocktail] = []
     @Published var firstLetterCocktails: [Cocktail] = []
-    @Published var ingredientsList: [Cocktail] = []
     @Published var ingredientCocktails: [Cocktail] = []
     
     // MARK: - Networking functions
@@ -49,12 +48,10 @@ class HomeState: ObservableObject {
     }
     
     // MARK: - ApiGroup request
-    func loadHome(refreshPolicy: RefreshPolicy = .ifNeeded) async {
+    func loadHome(refreshPolicy: RefreshPolicy = .ifNeeded, randomIngredient: String?) async {
         if shouldRefreshData(refreshPolicy: refreshPolicy) {
             requestStatus = .unknown
             LoaderManager.shared.startRequest()
-            
-            await listAllIngredients()
             
             setApiGroup(times: 7)
             await withTaskGroup(of: Void.self) { group in
@@ -67,21 +64,7 @@ class HomeState: ObservableObject {
                     await self.searchByFirstLetter()
                 }
                 group.addTask {
-                    await self.filterByIngredient()
-                }
-            }
-        }
-    }
-    
-    // MARK: - Ingredients list request
-    private func listAllIngredients() async {
-        let parameters: Parameters = [
-            "i" :"list"
-        ]
-        if let response = await CocktaildbWebServices.list(parameters: parameters) {
-            await MainActor.run {
-                if let data = response.drinks, !data.isEmpty {
-                    ingredientsList = data
+                    await self.filterByIngredient(randomIngredient: randomIngredient ?? "Vodka")
                 }
             }
         }
@@ -117,10 +100,9 @@ class HomeState: ObservableObject {
     }
     
     // MARK: - Filter by ingredient request
-    private func filterByIngredient() async {
-        let ingredient = ingredientsList.randomElement()?.strIngredient1 ?? "Vodka"
+    private func filterByIngredient(randomIngredient: String) async {
         let parameters: Parameters = [
-            "i": ingredient
+            "i": randomIngredient
         ]
         if let response = await CocktaildbWebServices.filter(parameters: parameters) {
             await MainActor.run {
