@@ -22,7 +22,7 @@ struct OnboardingScreen: View {
                     Text("onboarding.title")
                         .textStyle(font: .medium, size: 26, textAlignment: .center, alignment: .center)
                     Text("onboarding.subtitle")
-                        .textStyle(font: .regular, size: 20, textAlignment: .center, alignment: .center)
+                        .textStyle(size: 20, textAlignment: .center, alignment: .center)
                 }
             }
             Button("common.continue") {

@@ -47,7 +47,7 @@ struct pillButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .textStyle(font: .regular, size: 12, foregroundColor: .surface)
+            .textStyle(size: 12, foregroundColor: .surface)
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             .frame(height: 30)
             .background(.tertiaryBrand)

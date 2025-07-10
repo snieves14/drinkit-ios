@@ -9,4 +9,11 @@ enum Utils {
     enum Defaults {
         static let ingredient = "Vodka"
     }
+    
+    enum DrinkThumbnailSize: String {
+        case none = ""
+        case small = "/small"
+        case medium = "/medium"
+        case large = "/large"
+    }
 }

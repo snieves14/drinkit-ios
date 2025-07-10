@@ -17,6 +17,15 @@ struct RandomCocktailsView: View {
         VStack {
             Text("randomCocktails.title")
                 .textStyle(font: .medium, alignment: .leading, lineLimit: 2)
+                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            ScrollView(.horizontal) {
+                HStack(spacing: AppStyle.ScrollSpacing.regular) {
+                    ForEach(randomCocktails, id:\.idDrink) { cocktail in
+                        RandomCocktailCardView(cocktail: cocktail)
+                    }
+                }
+                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            }.scrollViewStyle()
         }
     }
 }

@@ -24,6 +24,7 @@ struct FirstLetterCocktailsView: View {
                     print("Tap en ver todos - FirstLetterCocktailsView")
                 }.buttonStyle(pillButtonStyle())
             }
+            .padding(.horizontal, AppStyle.HorizontalPadding.regular)
         }
     }
 }

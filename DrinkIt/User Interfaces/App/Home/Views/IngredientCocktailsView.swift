@@ -24,6 +24,7 @@ struct IngredientCocktailsView: View {
                     print("Tap en ver todos - IngredientCocktailsView")
                 }.buttonStyle(pillButtonStyle())
             }
+            .padding(.horizontal, AppStyle.HorizontalPadding.regular)
         }
     }
 }

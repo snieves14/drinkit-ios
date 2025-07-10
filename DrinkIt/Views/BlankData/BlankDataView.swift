@@ -19,7 +19,7 @@ struct BlankDataView: View {
                 .customImageStyle(width: 150, height: 150)
             VStack(spacing: 16) {
                 Text("blankData.title")
-                    .textStyle(font: .regular, textAlignment: .center, alignment: .center)
+                    .textStyle(textAlignment: .center, alignment: .center)
                 Button("common.retry") {
                     onAction()
                 }.buttonStyle(primaryButtonStyle())

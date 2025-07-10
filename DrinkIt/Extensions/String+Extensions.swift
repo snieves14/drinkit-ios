@@ -25,4 +25,8 @@ extension String {
         }
         return String(format: bundle.localizedString(forKey: self, value: nil, table: nil), arguments)
     }
+    
+    func withDrinkThumbnailSize(_ size: Utils.DrinkThumbnailSize) -> String {
+        self + size.rawValue
+    }
 }

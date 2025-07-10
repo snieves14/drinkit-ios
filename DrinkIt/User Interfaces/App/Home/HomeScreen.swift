@@ -18,17 +18,20 @@ struct HomeScreen: View {
     var body: some View {
         VStack {
             TabHeaderView(tabHeader: .home)
+                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             switch homeState.requestStatus {
             case .success:
                 ScrollView {
-                    if !homeState.randomCocktails.isEmpty {
-                        RandomCocktailsView(randomCocktails: homeState.randomCocktails)
-                    }
-                    if !homeState.firstLetterCocktails.isEmpty {
-                        FirstLetterCocktailsView(firstLetter: homeState.firstLetterCharacter, ingredientCocktails: homeState.firstLetterCocktails)
-                    }
-                    if !homeState.ingredientCocktails.isEmpty {
-                        IngredientCocktailsView(ingredientName: homeState.randomIngredient, ingredientCocktails: homeState.ingredientCocktails)
+                    VStack(spacing: AppStyle.ScrollSpacing.large) {
+                        if !homeState.randomCocktails.isEmpty {
+                            RandomCocktailsView(randomCocktails: homeState.randomCocktails)
+                        }
+                        if !homeState.firstLetterCocktails.isEmpty {
+                            FirstLetterCocktailsView(firstLetter: homeState.firstLetterCharacter, ingredientCocktails: homeState.firstLetterCocktails)
+                        }
+                        if !homeState.ingredientCocktails.isEmpty {
+                            IngredientCocktailsView(ingredientName: homeState.randomIngredient, ingredientCocktails: homeState.ingredientCocktails)
+                        }
                     }
                 }
                 .scrollViewStyle()
@@ -37,13 +40,14 @@ struct HomeScreen: View {
                 BlankDataView {
                     loadHome()
                 }
+                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             default:
                 EmptyView()
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .padding(.bottom, -6) ///ScrollView flush with the TabBar
-        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
+        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true, horizontalPadding: 0)
         .onAppear {
             loadHome()
         }

@@ -16,13 +16,15 @@ struct BaseViewModifier: ViewModifier {
     var isBackButtonHidden: Bool
     var isTitleHidden: Bool
     var popTo: Int
+    var verticalPadding: CGFloat?
+    var horizontalPadding: CGFloat?
     
     func body(content: Content) -> some View {
         ZStack {
             Color.surface.edgesIgnoringSafeArea(.all)
             content
-                .padding(.vertical, AppStyle.VerticalPadding.regular)
-                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+                .padding(.vertical, verticalPadding ?? AppStyle.VerticalPadding.regular)
+                .padding(.horizontal, horizontalPadding ?? AppStyle.HorizontalPadding.regular)
         }
         .toolbarStyle(title: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo)
         .ignoresSafeArea(.keyboard, edges: .bottom)
@@ -106,8 +108,8 @@ struct AnimatedTransitionViewModifier: ViewModifier {
 
 extension View {
     
-    public func baseViewStyle(tabBar: Visibility = .visible, toolBarTitle: String = "", isBackButtonHidden: Bool = false, isTitleHidden: Bool = false, popTo: Int = 1) -> some View {
-        modifier(BaseViewModifier(tabBar: tabBar, toolBarTitle: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo))
+    public func baseViewStyle(tabBar: Visibility = .visible, toolBarTitle: String = "", isBackButtonHidden: Bool = false, isTitleHidden: Bool = false, popTo: Int = 1, verticalPadding: CGFloat? = nil, horizontalPadding: CGFloat? = nil) -> some View {
+        modifier(BaseViewModifier(tabBar: tabBar, toolBarTitle: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo, verticalPadding: verticalPadding, horizontalPadding: horizontalPadding))
     }
     
     fileprivate func toolbarStyle(title: String = "", isBackButtonHidden : Bool = false, isTitleHidden : Bool = false, popTo: Int = 1) -> some View {

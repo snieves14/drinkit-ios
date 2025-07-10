@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA79432C2E1C006F00B396A9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CA79432B2E1C006F00B396A9 /* Alamofire */; };
 		CA7943BA2E1E6E7100B396A9 /* ObservableUserDefault in Frameworks */ = {isa = PBXBuildFile; productRef = CA7943B92E1E6E7100B396A9 /* ObservableUserDefault */; };
+		CA7944472E1FAE0A00B396A9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CA7944462E1FAE0A00B396A9 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7944472E1FAE0A00B396A9 /* Kingfisher in Frameworks */,
 				CA7943BA2E1E6E7100B396A9 /* ObservableUserDefault in Frameworks */,
 				CA79432C2E1C006F00B396A9 /* Alamofire in Frameworks */,
 			);
@@ -87,6 +89,7 @@
 			packageProductDependencies = (
 				CA79432B2E1C006F00B396A9 /* Alamofire */,
 				CA7943B92E1E6E7100B396A9 /* ObservableUserDefault */,
+				CA7944462E1FAE0A00B396A9 /* Kingfisher */,
 			);
 			productName = DrinkIt;
 			productReference = CABCCB7E2E16BF1E005724EE /* DrinkIt.app */;
@@ -120,6 +123,7 @@
 			packageReferences = (
 				CA79432A2E1C006F00B396A9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CA7943B82E1E6E7100B396A9 /* XCRemoteSwiftPackageReference "ObservableUserDefault" */,
+				CA7944452E1FAE0A00B396A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CABCCB7F2E16BF1E005724EE /* Products */;
@@ -390,6 +394,14 @@
 				minimumVersion = 1.3.1;
 			};
 		};
+		CA7944452E1FAE0A00B396A9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -402,6 +414,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CA7943B82E1E6E7100B396A9 /* XCRemoteSwiftPackageReference "ObservableUserDefault" */;
 			productName = ObservableUserDefault;
+		};
+		CA7944462E1FAE0A00B396A9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA7944452E1FAE0A00B396A9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
