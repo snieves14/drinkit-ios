@@ -11,7 +11,7 @@ struct FirstLetterCocktailsView: View {
     
     // MARK: - Properties
     let firstLetter: Character
-    var ingredientCocktails: [Cocktail]
+    var cocktails: [Cocktail]
     
     // MARK: - Body
     var body: some View {
@@ -20,11 +20,25 @@ struct FirstLetterCocktailsView: View {
                 Text("firstLetterCocktails.title \(String(firstLetter).uppercased())")
                     .textStyle(font: .medium, alignment: .leading, lineLimit: 2)
                 Spacer()
-                Button("common.see_all") {
-                    print("Tap en ver todos - FirstLetterCocktailsView")
-                }.buttonStyle(pillButtonStyle())
+                if cocktails.count > 5 {
+                    Button("common.see_all") {
+                        print("Tap en ver todos - FirstLetterCocktailsView")
+                    }
+                    .buttonStyle(pillButtonStyle())
+                }
             }
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            ScrollView(.horizontal) {
+                HStack(spacing: AppStyle.ScrollSpacing.small) {
+                    ForEach(cocktails.prefix(5), id:\.idDrink) { cocktail in
+                        FirstLetterCocktailCardView(cocktail: cocktail)
+                    }
+                }
+                .scrollTargetLayout()
+                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            }
+            .scrollViewStyle()
+            .scrollTargetBehavior(.viewAligned)
         }
     }
 }

@@ -65,4 +65,8 @@ struct Cocktail: Codable {
             return CocktailIngredient(name: name, measure: measure)
         }
     }
+    
+    var ingredientNames: String {
+        ingredients.map(\.name).joined(separator: ", ")
+    }
 }

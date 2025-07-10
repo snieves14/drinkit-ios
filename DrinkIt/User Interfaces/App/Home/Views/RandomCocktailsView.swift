@@ -10,7 +10,7 @@ import SwiftUI
 struct RandomCocktailsView: View {
     
     // MARK: - Properties
-    var randomCocktails: [Cocktail]
+    var cocktails: [Cocktail]
     
     // MARK: - Body
     var body: some View {
@@ -19,8 +19,8 @@ struct RandomCocktailsView: View {
                 .textStyle(font: .medium, alignment: .leading, lineLimit: 2)
                 .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             ScrollView(.horizontal) {
-                HStack(spacing: AppStyle.ScrollSpacing.regular) {
-                    ForEach(randomCocktails, id:\.idDrink) { cocktail in
+                HStack(spacing: AppStyle.ScrollSpacing.small) {
+                    ForEach(cocktails, id:\.idDrink) { cocktail in
                         RandomCocktailCardView(cocktail: cocktail)
                     }
                 }

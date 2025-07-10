@@ -11,7 +11,7 @@ struct IngredientCocktailsView: View {
     
     // MARK: - Properties
     let ingredientName: String
-    var ingredientCocktails: [Cocktail]
+    var cocktails: [Cocktail]
     
     // MARK: - Body
     var body: some View {

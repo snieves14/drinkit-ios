@@ -24,13 +24,13 @@ struct HomeScreen: View {
                 ScrollView {
                     VStack(spacing: AppStyle.ScrollSpacing.large) {
                         if !homeState.randomCocktails.isEmpty {
-                            RandomCocktailsView(randomCocktails: homeState.randomCocktails)
+                            RandomCocktailsView(cocktails: homeState.randomCocktails)
                         }
                         if !homeState.firstLetterCocktails.isEmpty {
-                            FirstLetterCocktailsView(firstLetter: homeState.firstLetterCharacter, ingredientCocktails: homeState.firstLetterCocktails)
+                            FirstLetterCocktailsView(firstLetter: homeState.firstLetterCharacter, cocktails: homeState.firstLetterCocktails)
                         }
                         if !homeState.ingredientCocktails.isEmpty {
-                            IngredientCocktailsView(ingredientName: homeState.randomIngredient, ingredientCocktails: homeState.ingredientCocktails)
+                            IngredientCocktailsView(ingredientName: homeState.randomIngredient, cocktails: homeState.ingredientCocktails)
                         }
                     }
                 }
