@@ -18,8 +18,6 @@ struct TabHeaderView: View {
         case myIngredients
         case myCocktails
 
-        var id: String { rawValue }
-
         var title: String {
             rawTitle.localized()
         }
@@ -36,12 +34,12 @@ struct TabHeaderView: View {
     }
     
     // MARK: - Properties
-    let tabHeader: TabHeaderType
+    let headerType: TabHeaderType
     
     // MARK: - Body
     var body: some View {
         VStack {
-            Text(tabHeader.title)
+            Text(headerType.title)
                 .textStyle(font: .semiBold, size: 27, alignment: .leading, lineLimit: 1, minimumScaleFactor: 0.5)
         }
     }

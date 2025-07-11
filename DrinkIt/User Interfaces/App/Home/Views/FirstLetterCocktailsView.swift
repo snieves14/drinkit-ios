@@ -16,7 +16,7 @@ struct FirstLetterCocktailsView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            HomeSectionHeaderView(title: "firstLetterCocktails.title".localizedWithArguments(arguments: String(firstLetter).uppercased()), itemCount: cocktails.count, onAction: {
+            HomeSectionHeaderView(headerType: .firstLetter(firstLetter), itemCount: cocktails.count, onAction: {
                 print("Tap en ver todos - FirstLetterCocktailsView")
             })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)

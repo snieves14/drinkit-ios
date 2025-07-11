@@ -17,7 +17,7 @@ struct HomeScreen: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            TabHeaderView(tabHeader: .home)
+            TabHeaderView(headerType: .home)
                 .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             switch homeState.requestStatus {
             case .success:

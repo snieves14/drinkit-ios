@@ -15,7 +15,7 @@ struct RandomCocktailsView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            HomeSectionHeaderView(title: "randomCocktails.title", itemCount: cocktails.count, onAction: {
+            HomeSectionHeaderView(headerType: .random, itemCount: cocktails.count, onAction: {
                 print("Tap en ver todos - RandomCocktailsView")
             })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)

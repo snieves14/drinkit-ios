@@ -16,7 +16,7 @@ struct IngredientCocktailsView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            HomeSectionHeaderView(title: "ingredientCocktails.title".localizedWithArguments(arguments: ingredientName), itemCount: cocktails.count, onAction: {
+            HomeSectionHeaderView(headerType: .ingredient(ingredientName), itemCount: cocktails.count, onAction: {
                 print("Tap en ver todos - IngredientCocktailsView")
             })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
