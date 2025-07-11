@@ -21,6 +21,9 @@
         }
       }
     },
+    "Bottom" : {
+
+    },
     "categories.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -37,6 +40,12 @@
           }
         }
       }
+    },
+    "Cocktail Detail Screen" : {
+
+    },
+    "Cocktails Screen" : {
+
     },
     "common.appName" : {
       "extractionState" : "manual",
@@ -257,6 +266,9 @@
           }
         }
       }
+    },
+    "Top" : {
+
     }
   },
   "version" : "1.0"

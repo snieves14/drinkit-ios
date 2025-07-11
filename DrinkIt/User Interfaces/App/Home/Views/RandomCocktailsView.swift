@@ -12,11 +12,13 @@ struct RandomCocktailsView: View {
     // MARK: - Properties
     var cocktails: [Cocktail]
     
+    @Environment(AppState.self) var appState
+    
     // MARK: - Body
     var body: some View {
         VStack {
             HomeSectionHeaderView(headerType: .random, itemCount: cocktails.count, onAction: {
-                print("Tap en ver todos - RandomCocktailsView")
+                appState.pushTo(.cocktailsManagement(.cocktailsScreen))
             })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             ScrollView(.horizontal) {

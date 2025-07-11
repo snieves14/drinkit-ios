@@ -9,8 +9,6 @@ import SwiftUI
 
 struct BaseViewModifier: ViewModifier {
     
-    @Environment(\.shouldShowTabBar) var shouldShowTabBar
-    
     var tabBar: Visibility
     var toolBarTitle: String
     var isBackButtonHidden: Bool
@@ -18,6 +16,8 @@ struct BaseViewModifier: ViewModifier {
     var popTo: Int
     var verticalPadding: CGFloat?
     var horizontalPadding: CGFloat?
+    
+    @Environment(\.shouldShowTabBar) var shouldShowTabBar
     
     func body(content: Content) -> some View {
         ZStack {
@@ -36,13 +36,13 @@ struct BaseViewModifier: ViewModifier {
 
 struct ToolbarViewModifier: ViewModifier {
     
-    @Environment(\.shouldShowTabBar) var shouldShowTabBar
-    @Environment(AppState.self) var appState
-    
     var title: String
     var isBackButtonHidden: Bool
     var isTitleHidden: Bool
     var popTo: Int
+    
+    @Environment(\.shouldShowTabBar) var shouldShowTabBar
+    @Environment(AppState.self) var appState
     
     func body(content: Content) -> some View {
         content

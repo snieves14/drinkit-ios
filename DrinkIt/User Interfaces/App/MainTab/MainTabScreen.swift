@@ -39,18 +39,23 @@ struct MainTabScreen: View {
             TabView(selection: $appState.routeIndex) {
                 NavigationStack(path: $appState.routes[0]){
                     HomeScreen()
+                        .navigationStackModifier()
                 }.tag(0)
                 NavigationStack(path: $appState.routes[1]){
                     CategoriesScreen()
+                        .navigationStackModifier()
                 }.tag(1)
                 NavigationStack(path: $appState.routes[2]){
                     FavoritesScreen()
+                        .navigationStackModifier()
                 }.tag(2)
                 NavigationStack(path: $appState.routes[3]){
                     MyIngredientsScreen()
+                        .navigationStackModifier()
                 }.tag(3)
                 NavigationStack(path: $appState.routes[4]){
                     MyCocktailsScreen()
+                        .navigationStackModifier()
                 }.tag(4)
             }
             .padding(.bottom, safeAreaInsets.bottom == 0 ? 30 : 15)

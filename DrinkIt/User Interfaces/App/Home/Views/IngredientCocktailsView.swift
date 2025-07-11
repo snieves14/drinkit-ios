@@ -13,11 +13,13 @@ struct IngredientCocktailsView: View {
     let ingredientName: String
     var cocktails: [Cocktail]
     
+    @Environment(AppState.self) var appState
+    
     // MARK: - Body
     var body: some View {
         VStack {
             HomeSectionHeaderView(headerType: .ingredient(ingredientName), itemCount: cocktails.count, onAction: {
-                print("Tap en ver todos - IngredientCocktailsView")
+                appState.pushTo(.cocktailsManagement(.cocktailsScreen))
             })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             ScrollView {
