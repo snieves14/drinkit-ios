@@ -16,17 +16,9 @@ struct FirstLetterCocktailsView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            HStack {
-                Text("firstLetterCocktails.title \(String(firstLetter).uppercased())")
-                    .textStyle(font: .medium, alignment: .leading, lineLimit: 2)
-                Spacer()
-                if cocktails.count > 5 {
-                    Button("common.see_all") {
-                        print("Tap en ver todos - FirstLetterCocktailsView")
-                    }
-                    .buttonStyle(pillButtonStyle())
-                }
-            }
+            HomeSectionHeaderView(title: "firstLetterCocktails.title".localizedWithArguments(arguments: String(firstLetter).uppercased()), itemCount: cocktails.count, onAction: {
+                print("Tap en ver todos - FirstLetterCocktailsView")
+            })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             ScrollView(.horizontal) {
                 HStack(spacing: AppStyle.ScrollSpacing.small) {

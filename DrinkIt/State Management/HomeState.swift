@@ -37,6 +37,15 @@ final class HomeState {
         }
     }
     
+    private func initializeDataProperties(randomIngredient: String?) {
+        requestStatus = .unknown
+        randomCocktails = []
+        firstLetterCocktails = []
+        ingredientCocktails = []
+        self.firstLetterCharacter = Character.randomLowercaseLetter
+        self.randomIngredient = randomIngredient ?? Utils.Defaults.ingredient
+    }
+    
     private func setApiGroup(times: Int) {
         for _ in 0..<times {
             apiGroup.enter()
@@ -53,9 +62,7 @@ final class HomeState {
     // MARK: - ApiGroup request
     func loadHome(refreshPolicy: RefreshPolicy = .ifNeeded, randomIngredient: String?) async {
         if shouldRefreshData(refreshPolicy: refreshPolicy) {
-            requestStatus = .unknown
-            self.firstLetterCharacter = Character.randomLowercaseLetter
-            self.randomIngredient = randomIngredient ?? Utils.Defaults.ingredient
+            initializeDataProperties(randomIngredient: randomIngredient)
             LoaderManager.shared.startRequest()
             
             setApiGroup(times: 7)

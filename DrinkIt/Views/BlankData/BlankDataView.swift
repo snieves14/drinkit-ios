@@ -17,7 +17,7 @@ struct BlankDataView: View {
         VStack {
             Image("logo_drinkit")
                 .customImageStyle(width: 150, height: 150)
-            VStack(spacing: 16) {
+            VStack(spacing: AppStyle.StackSpacing.large) {
                 Text("blankData.title")
                     .textStyle(textAlignment: .center, alignment: .center)
                 Button("common.retry") {

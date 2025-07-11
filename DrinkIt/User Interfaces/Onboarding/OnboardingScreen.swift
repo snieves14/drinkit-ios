@@ -18,7 +18,7 @@ struct OnboardingScreen: View {
             VStack {
                 Image("logo_drinkit")
                     .customImageStyle(width: 150, height: 150)
-                VStack(spacing: 8) {
+                VStack(spacing: AppStyle.StackSpacing.regular) {
                     Text("onboarding.title")
                         .textStyle(font: .medium, size: 26, textAlignment: .center, alignment: .center)
                     Text("onboarding.subtitle")

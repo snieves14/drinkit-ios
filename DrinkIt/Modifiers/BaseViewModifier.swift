@@ -23,7 +23,7 @@ struct BaseViewModifier: ViewModifier {
         ZStack {
             Color.surface.edgesIgnoringSafeArea(.all)
             content
-                .padding(.vertical, verticalPadding ?? AppStyle.VerticalPadding.regular)
+                .padding(.vertical, verticalPadding ?? AppStyle.VerticalPadding.small)
                 .padding(.horizontal, horizontalPadding ?? AppStyle.HorizontalPadding.regular)
         }
         .toolbarStyle(title: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo)

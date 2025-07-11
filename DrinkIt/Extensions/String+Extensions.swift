@@ -12,18 +12,26 @@ extension String {
         !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
-    func localized(comment: String = "", locale: Locale? = nil) -> String {
-        guard let bundlePath = Bundle.main.path(forResource: locale?.identifier, ofType: "lproj"), let bundle = Bundle(path: bundlePath) else {
-            return NSLocalizedString(self, comment: comment)
+    func localized(comment: String = "") -> String {
+        let languageCode = Locale.preferredLanguages.first ?? "en"
+        
+        if let bundlePath = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+           let bundle = Bundle(path: bundlePath) {
+            return bundle.localizedString(forKey: self, value: nil, table: nil)
         }
-        return bundle.localizedString(forKey: self, value: nil, table: nil)
+        
+        return NSLocalizedString(self, comment: comment)
     }
     
-    func localizedWithArguments(comment: String = "", locale: Locale? = nil, arguments: CVarArg...) -> String {
-        guard let bundlePath = Bundle.main.path(forResource: locale?.identifier, ofType: "lproj"), let bundle = Bundle(path: bundlePath) else {
-            return String(format: NSLocalizedString(self, bundle: .main, comment: comment), arguments)
+    func localizedWithArguments(comment: String = "", arguments: CVarArg...) -> String {
+        let languageCode = Locale.preferredLanguages.first ?? "en"
+        
+        if let bundlePath = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+           let bundle = Bundle(path: bundlePath) {
+            return String(format: bundle.localizedString(forKey: self, value: nil, table: nil), arguments)
         }
-        return String(format: bundle.localizedString(forKey: self, value: nil, table: nil), arguments)
+        
+        return String(format: NSLocalizedString(self, bundle: .main, comment: comment), arguments)
     }
     
     func withDrinkThumbnailSize(_ size: Utils.DrinkThumbnailSize) -> String {

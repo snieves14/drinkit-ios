@@ -16,15 +16,19 @@ struct IngredientCocktailsView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            HStack {
-                Text("ingredientCocktails.title \(ingredientName)")
-                    .textStyle(font: .medium, alignment: .leading, lineLimit: 2)
-                Spacer()
-                Button("common.see_all") {
-                    print("Tap en ver todos - IngredientCocktailsView")
-                }.buttonStyle(pillButtonStyle())
-            }
+            HomeSectionHeaderView(title: "ingredientCocktails.title".localizedWithArguments(arguments: ingredientName), itemCount: cocktails.count, onAction: {
+                print("Tap en ver todos - IngredientCocktailsView")
+            })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            ScrollView {
+                VStack(spacing: AppStyle.ScrollSpacing.small) {
+                    ForEach(cocktails.prefix(5), id:\.idDrink) { cocktail in
+                        IngredientCocktailCardView(cocktail: cocktail)
+                    }
+                }
+                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            }
+            .scrollViewStyle()
         }
     }
 }

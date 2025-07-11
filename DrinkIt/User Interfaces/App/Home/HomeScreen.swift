@@ -33,12 +33,16 @@ struct HomeScreen: View {
                             IngredientCocktailsView(ingredientName: homeState.randomIngredient, cocktails: homeState.ingredientCocktails)
                         }
                     }
+                    .padding(.bottom, AppStyle.VerticalPadding.regular)
+                }
+                .refreshable {
+                    loadHome(refreshPolicy: .always)
                 }
                 .scrollViewStyle()
                 .withTransition()
             case .empty:
                 BlankDataView {
-                    loadHome()
+                    loadHome(refreshPolicy: .always)
                 }
                 .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             default:
@@ -54,10 +58,10 @@ struct HomeScreen: View {
     }
     
     // MARK: - Private functions
-    private func loadHome() {
+    private func loadHome(refreshPolicy: RefreshPolicy = .ifNeeded) {
         Task {
             await cocktaildbListsState.listOfIngredients()
-            await homeState.loadHome(randomIngredient: cocktaildbListsState.randomIngredientName())
+            await homeState.loadHome(refreshPolicy: refreshPolicy, randomIngredient: cocktaildbListsState.randomIngredientName())
         }
     }
 }

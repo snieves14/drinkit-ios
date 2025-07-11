@@ -43,7 +43,7 @@ final class AppState {
             .store(in: &cancellables)
     }
     
-    // MARK: - Routes Function
+    // MARK: - Routes Functions
     private func createRoutesArray(){
         routes.append(contentsOf: Array(repeating: [], count: 5))
     }

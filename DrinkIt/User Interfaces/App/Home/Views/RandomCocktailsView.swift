@@ -15,9 +15,10 @@ struct RandomCocktailsView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            Text("randomCocktails.title")
-                .textStyle(font: .medium, alignment: .leading, lineLimit: 2)
-                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
+            HomeSectionHeaderView(title: "randomCocktails.title", itemCount: cocktails.count, onAction: {
+                print("Tap en ver todos - RandomCocktailsView")
+            })
+            .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             ScrollView(.horizontal) {
                 HStack(spacing: AppStyle.ScrollSpacing.small) {
                     ForEach(cocktails, id:\.idDrink) { cocktail in

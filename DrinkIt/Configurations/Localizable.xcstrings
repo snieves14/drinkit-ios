@@ -122,19 +122,19 @@
         }
       }
     },
-    "firstLetterCocktails.title %@" : {
+    "firstLetterCocktails.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cocktails That Start with **%@**"
+            "value" : "Cocktails That Start with %1$@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cocktails que empiezan por **%@**"
+            "value" : "Cocktails que empiezan por %1$@"
           }
         }
       }
@@ -156,18 +156,19 @@
         }
       }
     },
-    "ingredientCocktails.title %@" : {
+    "ingredientCocktails.title" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cocktails with **%@**"
+            "value" : "Cocktails with %1$@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cocktails con **%@**"
+            "value" : "Cocktails con %1$@"
           }
         }
       }
@@ -241,6 +242,7 @@
       }
     },
     "randomCocktails.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

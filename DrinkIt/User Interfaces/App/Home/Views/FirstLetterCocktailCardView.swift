@@ -27,7 +27,7 @@ struct FirstLetterCocktailCardView: View {
                 .cornerRadius(AppStyle.CornerRadius.large)
 
             if let name = cocktail.strDrink {
-                VStack(spacing: 4) {
+                VStack(spacing: AppStyle.StackSpacing.small) {
                     Text(name)
                         .textStyle(font: .semiBold, size: 14, foregroundColor: .white, alignment: .leading)
                     Text(cocktail.ingredientNames)
@@ -38,5 +38,4 @@ struct FirstLetterCocktailCardView: View {
             }
         }
     }
-    
 }
