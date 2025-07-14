@@ -40,25 +40,29 @@ struct MainTabScreen: View {
                 NavigationStack(path: $appState.routes[0]){
                     HomeScreen()
                         .navigationStackModifier()
+                        .padding(.bottom, safeAreaInsets.bottom == 0 ? 30 : 15)
                 }.tag(0)
                 NavigationStack(path: $appState.routes[1]){
                     CategoriesScreen()
                         .navigationStackModifier()
+                        .padding(.bottom, safeAreaInsets.bottom == 0 ? 30 : 15)
                 }.tag(1)
                 NavigationStack(path: $appState.routes[2]){
                     FavoritesScreen()
                         .navigationStackModifier()
+                        .padding(.bottom, safeAreaInsets.bottom == 0 ? 30 : 15)
                 }.tag(2)
                 NavigationStack(path: $appState.routes[3]){
                     MyIngredientsScreen()
                         .navigationStackModifier()
+                        .padding(.bottom, safeAreaInsets.bottom == 0 ? 30 : 15)
                 }.tag(3)
                 NavigationStack(path: $appState.routes[4]){
                     MyCocktailsScreen()
                         .navigationStackModifier()
+                        .padding(.bottom, safeAreaInsets.bottom == 0 ? 30 : 15)
                 }.tag(4)
             }
-            .padding(.bottom, safeAreaInsets.bottom == 0 ? 30 : 15)
             if !shouldShowTabBar.wrappedValue {
                 EmptyView()
             } else {

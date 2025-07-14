@@ -12,7 +12,6 @@ struct MyIngredientsScreen: View {
         VStack {
             TabHeaderView(headerType: .myIngredients)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }

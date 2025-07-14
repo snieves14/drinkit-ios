@@ -12,7 +12,6 @@ struct CategoriesScreen: View {
         VStack {
             TabHeaderView(headerType: .categories)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }

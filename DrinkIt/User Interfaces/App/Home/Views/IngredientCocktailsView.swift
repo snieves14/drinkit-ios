@@ -11,15 +11,15 @@ struct IngredientCocktailsView: View {
     
     // MARK: - Properties
     let ingredientName: String
-    var cocktails: [Cocktail]
+    let cocktails: [Cocktail]
     
     @Environment(AppState.self) var appState
     
     // MARK: - Body
     var body: some View {
         VStack {
-            HomeSectionHeaderView(headerType: .ingredient(ingredientName), itemCount: cocktails.count, onAction: {
-                appState.pushTo(.cocktailsManagement(.cocktailsScreen))
+            HomeSectionHeaderView(cocktailSectionType: .ingredient(ingredientName), itemCount: cocktails.count, onAction: {
+                appState.pushTo(.cocktailsManagement(.cocktailsScreen(cocktailSectionType: CocktailSectionType.ingredient(ingredientName), cocktails: cocktails)))
             })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             ScrollView {

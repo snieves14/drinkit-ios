@@ -10,15 +10,15 @@ import SwiftUI
 struct RandomCocktailsView: View {
     
     // MARK: - Properties
-    var cocktails: [Cocktail]
+    let cocktails: [Cocktail]
     
     @Environment(AppState.self) var appState
     
     // MARK: - Body
     var body: some View {
         VStack {
-            HomeSectionHeaderView(headerType: .random, itemCount: cocktails.count, onAction: {
-                appState.pushTo(.cocktailsManagement(.cocktailsScreen))
+            HomeSectionHeaderView(cocktailSectionType: .random, itemCount: cocktails.count, onAction: {
+                appState.pushTo(.cocktailsManagement(.cocktailsScreen(cocktailSectionType: CocktailSectionType.random, cocktails: cocktails)))
             })
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             ScrollView(.horizontal) {

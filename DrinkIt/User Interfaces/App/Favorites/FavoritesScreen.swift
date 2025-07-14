@@ -12,7 +12,6 @@ struct FavoritesScreen: View {
         VStack {
             TabHeaderView(headerType: .favorites)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }

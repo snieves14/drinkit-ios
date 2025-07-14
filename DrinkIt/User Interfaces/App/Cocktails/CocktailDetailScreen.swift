@@ -8,15 +8,11 @@
 import SwiftUI
 
 struct CocktailDetailScreen: View {
+    
+    // MARK: - Body
     var body: some View {
         VStack {
-            Text("Top")
-            Spacer()
-            Text("Cocktail Detail Screen")
-            Spacer()
-            Text("Bottom")
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(tabBar: .hidden, toolBarTitle: "Title")
     }
 }

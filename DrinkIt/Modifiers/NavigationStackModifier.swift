@@ -11,9 +11,17 @@ enum Route: Hashable {
     
     case cocktailsManagement(CocktailsManagementRoutes)
     
-    enum CocktailsManagementRoutes: Hashable {
-        case cocktailsScreen
+    enum CocktailsManagementRoutes: Hashable, Equatable {
+        case cocktailsScreen(cocktailSectionType: CocktailSectionType, cocktails: [Cocktail])
         case cocktailDetailScreen
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(String(describing: self))
+        }
+        
+        static func == (lhs: CocktailsManagementRoutes, rhs: CocktailsManagementRoutes) -> Bool {
+            return true
+        }
     }
 }
 
@@ -24,8 +32,8 @@ struct CocktailsManagementRouter {
     @ViewBuilder
     func configure() -> some View {
         switch routes {
-        case .cocktailsScreen:
-            CocktailsScreen()
+        case .cocktailsScreen(let cocktailSectionType, let cocktails):
+            CocktailsScreen(cocktailSectionType: cocktailSectionType, cocktails: cocktails)
         case .cocktailDetailScreen:
             CocktailDetailScreen()
         }
@@ -49,7 +57,6 @@ struct NavigationStackModifier: ViewModifier {
 }
 
 extension View {
-    /// Adds the `NavigationStackModifier` to the view.
     func navigationStackModifier() -> some View {
         modifier(NavigationStackModifier())
     }

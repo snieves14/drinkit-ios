@@ -14,6 +14,7 @@ struct BaseViewModifier: ViewModifier {
     var isBackButtonHidden: Bool
     var isTitleHidden: Bool
     var popTo: Int
+    var alignment: Alignment
     var verticalPadding: CGFloat?
     var horizontalPadding: CGFloat?
     
@@ -23,6 +24,7 @@ struct BaseViewModifier: ViewModifier {
         ZStack {
             Color.surface.edgesIgnoringSafeArea(.all)
             content
+                .frame(maxHeight: .infinity, alignment: alignment)
                 .padding(.vertical, verticalPadding ?? AppStyle.VerticalPadding.small)
                 .padding(.horizontal, horizontalPadding ?? AppStyle.HorizontalPadding.regular)
         }
@@ -74,7 +76,7 @@ struct ToolbarViewModifier: ViewModifier {
                 if !isTitleHidden {
                     ToolbarItem(placement: .principal) {
                         Text(title.localized())
-                            .textStyle(font: .bold, size: 18, lineLimit: 1, minimumScaleFactor: 0.5)
+                            .textStyle(font: .semiBold, size: 18, lineLimit: 1, minimumScaleFactor: 0.5)
                     }
                 }
             }
@@ -108,8 +110,8 @@ struct AnimatedTransitionViewModifier: ViewModifier {
 
 extension View {
     
-    public func baseViewStyle(tabBar: Visibility = .visible, toolBarTitle: String = "", isBackButtonHidden: Bool = false, isTitleHidden: Bool = false, popTo: Int = 1, verticalPadding: CGFloat? = nil, horizontalPadding: CGFloat? = nil) -> some View {
-        modifier(BaseViewModifier(tabBar: tabBar, toolBarTitle: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo, verticalPadding: verticalPadding, horizontalPadding: horizontalPadding))
+    public func baseViewStyle(tabBar: Visibility = .visible, toolBarTitle: String = "", isBackButtonHidden: Bool = false, isTitleHidden: Bool = false, popTo: Int = 1, alignment: Alignment = .top, verticalPadding: CGFloat? = nil, horizontalPadding: CGFloat? = nil) -> some View {
+        modifier(BaseViewModifier(tabBar: tabBar, toolBarTitle: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo, alignment: alignment, verticalPadding: verticalPadding, horizontalPadding: horizontalPadding))
     }
     
     fileprivate func toolbarStyle(title: String = "", isBackButtonHidden : Bool = false, isTitleHidden : Bool = false, popTo: Int = 1) -> some View {

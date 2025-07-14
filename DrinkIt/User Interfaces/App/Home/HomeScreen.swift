@@ -49,7 +49,6 @@ struct HomeScreen: View {
                 EmptyView()
             }
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .padding(.bottom, -6) ///ScrollView flush with the TabBar
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true, horizontalPadding: 0)
         .onAppear {

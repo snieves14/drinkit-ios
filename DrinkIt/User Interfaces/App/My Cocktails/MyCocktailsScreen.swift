@@ -12,7 +12,6 @@ struct MyCocktailsScreen: View {
         VStack {
             TabHeaderView(headerType: .myCocktails)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
     }
 }
