@@ -12,6 +12,16 @@ extension String {
         !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
+    var firstParagraph: String {
+           let separators = ["\r\n\r\n", "\n\n"]
+           for separator in separators {
+               if let paragraph = self.components(separatedBy: separator).first {
+                   return paragraph.trimmingCharacters(in: .whitespacesAndNewlines)
+               }
+           }
+           return self.components(separatedBy: .newlines).first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? self
+       }
+    
     func localized(comment: String = "") -> String {
         let languageCode = Locale.preferredLanguages.first ?? "en"
         

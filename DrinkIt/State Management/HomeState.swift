@@ -101,7 +101,7 @@ final class HomeState {
         let parameters: Parameters = [
             "f" : firstLetterCharacter
         ]
-        if let response = await CocktaildbWebServices.search(parameters: parameters) {
+        if let response = await CocktaildbWebServices.search(parameters: parameters) as DrinkResponse? {
             await MainActor.run {
                 if let data = response.drinks, !data.isEmpty {
                     firstLetterCocktails = data

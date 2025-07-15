@@ -24,7 +24,7 @@ struct RandomCocktailsView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: AppStyle.ScrollSpacing.small) {
                     ForEach(cocktails, id:\.idDrink) { cocktail in
-                        RandomCocktailCardView(cocktail: cocktail)
+                        CocktailCardCompactView(cocktail: cocktail)
                     }
                 }
                 .padding(.horizontal, AppStyle.HorizontalPadding.regular)

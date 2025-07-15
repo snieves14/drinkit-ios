@@ -25,7 +25,7 @@ struct IngredientCocktailsView: View {
             ScrollView {
                 VStack(spacing: AppStyle.ScrollSpacing.small) {
                     ForEach(cocktails.prefix(5), id:\.idDrink) { cocktail in
-                        IngredientCocktailCardView(cocktail: cocktail)
+                        CocktailRowView(cocktail: cocktail)
                     }
                 }
                 .padding(.horizontal, AppStyle.HorizontalPadding.regular)

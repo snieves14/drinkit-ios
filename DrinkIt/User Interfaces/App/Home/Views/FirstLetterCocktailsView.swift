@@ -25,7 +25,7 @@ struct FirstLetterCocktailsView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: AppStyle.ScrollSpacing.small) {
                     ForEach(cocktails.prefix(5), id:\.idDrink) { cocktail in
-                        FirstLetterCocktailCardView(cocktail: cocktail)
+                        CocktailCardView(cocktail: cocktail)
                     }
                 }
                 .scrollTargetLayout()

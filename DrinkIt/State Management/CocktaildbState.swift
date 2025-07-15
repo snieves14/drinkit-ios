@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 @MainActor
 @Observable
@@ -15,9 +16,12 @@ final class CocktaildbState {
     var requestStatus: RequestStatus = .unknown
     private var lastRefreshDate: Date?
     
-    // MARK: - Data Properties
+    // MARK: - Data Properties [Random request]
     var drinkResponse: DrinkResponse?
     var cocktails: [Cocktail] = []
+    
+    // MARK: - Data Properties [Search request]
+    var ingredientDescription: String = ""
     
     // MARK: - Networking functions
     private func shouldRefreshData(refreshPolicy: RefreshPolicy) -> Bool {
@@ -55,5 +59,23 @@ final class CocktaildbState {
             }
             LoaderManager.shared.endRequest()
         }
+    }
+    
+    // MARK: - Search by ingredient request
+    func searchByIngredient(ingredient: String) async {
+        guard ingredientDescription.isEmpty else { return }
+        let parameters: Parameters = [
+            "i" : ingredient
+        ]
+        LoaderManager.shared.startRequest()
+        if let response = await CocktaildbWebServices.search(parameters: parameters) as IngredientResponse? {
+            await MainActor.run {
+                if let data = response.ingredients?.first?.strDescription, !data.isEmpty {
+                    ingredientDescription = data
+                }
+                requestStatus = .success
+            }
+        }
+        LoaderManager.shared.endRequest()
     }
 }

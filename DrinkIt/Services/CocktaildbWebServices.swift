@@ -34,16 +34,22 @@ class CocktaildbWebServices {
         }
     }
     
-    // MARK: - Search request
-    static func search(parameters: Parameters) async -> DrinkResponse? {
+    // MARK: - Search request    
+    static func search<T: Decodable>(parameters: Parameters) async -> T? {
         do {
             let data = try await WebServiceManager.shared.get(
                 path: "/search.php", parameters: parameters
             )
-            let result: DrinkResponse = try WebServiceManager.parseData(data: data)
+            let result: T = try WebServiceManager.parseData(data: data)
             return result
         } catch let error {
-            return DrinkResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], drinks: nil)
+            if T.self == DrinkResponse.self {
+                return DrinkResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], drinks: nil) as? T
+            } else if T.self == IngredientResponse.self {
+                return IngredientResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], ingredients: nil) as? T
+            } else {
+                return nil
+            }
         }
     }
     

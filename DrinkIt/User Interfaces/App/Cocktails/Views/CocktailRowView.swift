@@ -1,5 +1,5 @@
 //
-//  IngredientCocktailCardView.swift
+//  CocktailRowView.swift
 //  DrinkIt
 //
 //  Created by Santi Nieves on 11/7/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IngredientCocktailCardView: View {
+struct CocktailRowView: View {
     
     // MARK: - Properties
     let cocktail: Cocktail
