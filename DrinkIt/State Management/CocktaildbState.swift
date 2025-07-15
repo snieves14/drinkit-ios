@@ -16,9 +16,9 @@ final class CocktaildbState {
     var requestStatus: RequestStatus = .unknown
     private var lastRefreshDate: Date?
     
-    // MARK: - Data Properties [Random request]
+    // MARK: - Data Properties [lookup request]
     var drinkResponse: DrinkResponse?
-    var cocktails: [Cocktail] = []
+    var cocktail: Cocktail?
     
     // MARK: - Data Properties [Search request]
     var ingredientDescription: String = ""
@@ -36,21 +36,28 @@ final class CocktaildbState {
         }
     }
     
-    // MARK: - Random cocktail request
-    func random(refreshPolicy: RefreshPolicy = .ifNeeded) async {
+    // MARK: - Lookup cocktail request
+    func lookup(refreshPolicy: RefreshPolicy = .ifNeeded, idDrink: String) async {
+        let parameters: Parameters = [
+            "i" : idDrink
+        ]
         if shouldRefreshData(refreshPolicy: refreshPolicy) {
             requestStatus = .unknown
             LoaderManager.shared.startRequest()
-            if let response = await CocktaildbWebServices.random() {
+            if let response = await CocktaildbWebServices.lookup(parameters: parameters) {
                 await MainActor.run {
                     drinkResponse = response
                     if let _ = drinkResponse?.errors {
                         requestStatus = .failure
                     } else {
                         if let data = drinkResponse?.drinks {
-                            cocktails = data
+                            guard let cocktail = data.first else {
+                                requestStatus = .empty
+                                return
+                            }
+                            self.cocktail = cocktail
                             lastRefreshDate = Date()
-                            requestStatus = data.isEmpty ? .empty : .success
+                            requestStatus = .success
                         } else {
                             requestStatus = .failure
                         }

@@ -65,4 +65,17 @@ class CocktaildbWebServices {
             return DrinkResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], drinks: nil)
         }
     }
+    
+    // MARK: - lookup request
+    static func lookup(parameters: Parameters) async -> DrinkResponse? {
+        do {
+            let data = try await WebServiceManager.shared.get(
+                path: "/lookup.php", parameters: parameters
+            )
+            let result: DrinkResponse = try WebServiceManager.parseData(data: data)
+            return result
+        } catch let error {
+            return DrinkResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], drinks: nil)
+        }
+    }
 }

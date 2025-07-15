@@ -4,8 +4,7 @@
     "" : {
 
     },
-    "blankData.title" : {
-      "extractionState" : "manual",
+    "blankData.title.primary" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -17,6 +16,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡Vaya! Algo salió mal…\nNo hemos podido cargar el contenido en este momento. Comprueba tu conexión o inténtalo de nuevo"
+          }
+        }
+      }
+    },
+    "blankData.title.secondary" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No results available\nThere’s currently no content to display"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin resultados disponibles\nActualmente no hay contenido para mostrar"
           }
         }
       }

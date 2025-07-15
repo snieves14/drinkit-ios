@@ -41,7 +41,7 @@ struct HomeScreen: View {
                 .scrollViewStyle()
                 .withTransition()
             case .empty:
-                BlankDataView {
+                PrimaryBlankDataView {
                     loadHome(refreshPolicy: .always)
                 }
                 .padding(.horizontal, AppStyle.HorizontalPadding.regular)
