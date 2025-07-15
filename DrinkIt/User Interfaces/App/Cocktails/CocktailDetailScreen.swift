@@ -9,10 +9,13 @@ import SwiftUI
 
 struct CocktailDetailScreen: View {
     
+    // MARK: - Properties
+    let cocktail: Cocktail
+    
     // MARK: - Body
     var body: some View {
         VStack {
         }
-        .baseViewStyle(tabBar: .hidden, toolBarTitle: "Title")
+        .baseViewStyle(tabBar: .hidden, toolBarTitle: cocktail.strDrink ?? "cocktailDetail.title")
     }
 }

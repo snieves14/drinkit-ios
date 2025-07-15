@@ -38,6 +38,23 @@
         }
       }
     },
+    "cocktailDetail.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cocktail"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cocktail"
+          }
+        }
+      }
+    },
     "common.appName" : {
       "extractionState" : "manual",
       "localizations" : {

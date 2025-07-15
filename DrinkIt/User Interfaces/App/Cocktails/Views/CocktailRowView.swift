@@ -12,6 +12,8 @@ struct CocktailRowView: View {
     // MARK: - Properties
     let cocktail: Cocktail
     
+    @Environment(AppState.self) var appState
+    
     private let cardSize: CGFloat = 50
     
 
@@ -29,6 +31,10 @@ struct CocktailRowView: View {
                 Text(name)
                     .textStyle(font: .semiBold, size: 14, alignment: .leading)
             }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
         }
     }
 }

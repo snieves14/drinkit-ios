@@ -12,6 +12,8 @@ struct CocktailCardCompactView: View {
     // MARK: - Properties
     let cocktail: Cocktail
     
+    @Environment(AppState.self) var appState
+    
     private let cardWidth: CGFloat = 140
     private let cardHeight: CGFloat = 180
     
@@ -31,6 +33,9 @@ struct CocktailCardCompactView: View {
                     .padding([.horizontal, .bottom], 8)
                     .frame(width: cardWidth)
             }
+        }
+        .onTapGesture {
+            appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
         }
     }
 }

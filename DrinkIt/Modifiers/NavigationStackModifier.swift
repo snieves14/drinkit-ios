@@ -13,7 +13,7 @@ enum Route: Hashable {
     
     enum CocktailsManagementRoutes: Hashable, Equatable {
         case cocktailsScreen(cocktailSectionType: CocktailSectionType, cocktails: [Cocktail])
-        case cocktailDetailScreen
+        case cocktailDetailScreen(cocktail: Cocktail)
         
         func hash(into hasher: inout Hasher) {
             hasher.combine(String(describing: self))
@@ -34,8 +34,8 @@ struct CocktailsManagementRouter {
         switch routes {
         case .cocktailsScreen(let cocktailSectionType, let cocktails):
             CocktailsScreen(cocktailSectionType: cocktailSectionType, cocktails: cocktails)
-        case .cocktailDetailScreen:
-            CocktailDetailScreen()
+        case .cocktailDetailScreen(let cocktail):
+            CocktailDetailScreen(cocktail: cocktail)
         }
     }
 }

@@ -11,6 +11,8 @@ struct CocktailCardView: View {
     
     // MARK: - Properties
     let cocktail: Cocktail
+    
+    @Environment(AppState.self) var appState
 
     private var cardWidth: CGFloat {
         UIScreen.width - (2 * AppStyle.HorizontalPadding.regular)
@@ -36,6 +38,9 @@ struct CocktailCardView: View {
                 .padding([.horizontal, .bottom], 8)
                 .frame(width: cardWidth, alignment: .leading)
             }
+        }
+        .onTapGesture {
+            appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
         }
     }
 }
