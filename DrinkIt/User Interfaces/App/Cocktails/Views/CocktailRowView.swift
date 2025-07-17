@@ -31,6 +31,11 @@ struct CocktailRowView: View {
                 Text(name)
                     .textStyle(font: .semiBold, alignment: .leading)
             }
+            Spacer()
+            Button("") {
+                print("CocktailRowView - Tap en favorito")
+            }
+            .buttonStyle(favButtonStyle(isFavorite: false))
         }
         .contentShape(Rectangle())
         .onTapGesture {

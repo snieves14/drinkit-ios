@@ -47,6 +47,14 @@ struct CocktailDetailScreen: View {
                 EmptyView()
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("") {
+                   print("CocktailDetailScreen - Tap en favorito")
+                }
+                .buttonStyle(favButtonStyle(isFavorite: true))
+            }
+        }
         .baseViewStyle(tabBar: .hidden, toolBarTitle: cocktail.strDrink ?? "cocktailDetail.title")
         .padding(.bottom, safeAreaInsets.bottom != 0 ? 0 : -8) ///ScrollView flush with the bottom screen
         .edgesIgnoringSafeArea(.bottom) ///Allows scrolling under the home indicator

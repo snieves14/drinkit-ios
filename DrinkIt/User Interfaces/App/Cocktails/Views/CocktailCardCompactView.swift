@@ -17,25 +17,32 @@ struct CocktailCardCompactView: View {
     private let cardWidth: CGFloat = 140
     private let cardHeight: CGFloat = 180
     
-
+    
     // MARK: - Body
     var body: some View {
-        ZStack(alignment: .bottom) {
-            KFImageView(imageURL: cocktail.strDrinkThumb?.withDrinkThumbnailSize(.small), imageURLWidth: cardWidth, imageURLHeight: cardHeight, contentMode: .fill)
-            Rectangle()
-                .foregroundColor(Color.shadow.opacity(0.1))
-                .frame(width: cardWidth, height: cardHeight)
-                .cornerRadius(AppStyle.CornerRadius.regular)
-
-            if let name = cocktail.strDrink {
-                Text(name)
-                    .textStyle(font: .semiBold, foregroundColor: .white, alignment: .leading)
-                    .padding([.horizontal, .bottom], 8)
-                    .frame(width: cardWidth)
+        ZStack(alignment: .topTrailing) {
+            ZStack(alignment: .bottom) {
+                KFImageView(imageURL: cocktail.strDrinkThumb?.withDrinkThumbnailSize(.small), imageURLWidth: cardWidth, imageURLHeight: cardHeight, contentMode: .fill)
+                Rectangle()
+                    .foregroundColor(Color.shadow.opacity(0.1))
+                    .frame(width: cardWidth, height: cardHeight)
+                    .cornerRadius(AppStyle.CornerRadius.regular)
+                
+                if let name = cocktail.strDrink {
+                    Text(name)
+                        .textStyle(font: .semiBold, foregroundColor: .white, alignment: .leading)
+                        .padding([.horizontal, .bottom], 8)
+                        .frame(width: cardWidth)
+                }
             }
-        }
-        .onTapGesture {
-            appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
+            .onTapGesture {
+                appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
+            }
+            Button("") {
+                print("CocktailCardCompactView - Tap en favorito")
+            }
+            .buttonStyle(favButtonStyle(isFavorite: false, primaryColor: .white, size: 24))
+            .padding(AppStyle.Padding.regular)
         }
     }
 }

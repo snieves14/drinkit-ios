@@ -21,26 +21,33 @@ struct CocktailCardView: View {
 
     // MARK: - Body
     var body: some View {
-        ZStack(alignment: .bottom) {
-            KFImageView(imageURL: cocktail.strDrinkThumb?.withDrinkThumbnailSize(.medium), imageURLWidth: cardWidth, imageURLHeight: cardHeight, contentMode: .fill)
-            Rectangle()
-                .foregroundColor(Color.shadow.opacity(0.1))
-                .frame(width: cardWidth, height: cardHeight)
-                .cornerRadius(AppStyle.CornerRadius.large)
+        ZStack(alignment: .topTrailing) {
+            ZStack(alignment: .bottom) {
+                KFImageView(imageURL: cocktail.strDrinkThumb?.withDrinkThumbnailSize(.medium), imageURLWidth: cardWidth, imageURLHeight: cardHeight, contentMode: .fill)
+                Rectangle()
+                    .foregroundColor(Color.shadow.opacity(0.1))
+                    .frame(width: cardWidth, height: cardHeight)
+                    .cornerRadius(AppStyle.CornerRadius.large)
 
-            if let name = cocktail.strDrink {
-                VStack(spacing: AppStyle.StackSpacing.small) {
-                    Text(name)
-                        .textStyle(font: .semiBold, foregroundColor: .white, alignment: .leading)
-                    Text(cocktail.ingredientNames)
-                        .textStyle(font: .regular, size: AppStyle.TextSize.small, foregroundColor: .white, alignment: .leading, lineLimit: 3)
+                if let name = cocktail.strDrink {
+                    VStack(spacing: AppStyle.StackSpacing.small) {
+                        Text(name)
+                            .textStyle(font: .semiBold, foregroundColor: .white, alignment: .leading)
+                        Text(cocktail.ingredientNames)
+                            .textStyle(font: .regular, size: AppStyle.TextSize.small, foregroundColor: .white, alignment: .leading, lineLimit: 3)
+                    }
+                    .padding([.horizontal, .bottom], 8)
+                    .frame(width: cardWidth, alignment: .leading)
                 }
-                .padding([.horizontal, .bottom], 8)
-                .frame(width: cardWidth, alignment: .leading)
             }
-        }
-        .onTapGesture {
-            appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
+            .onTapGesture {
+                appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
+            }
+            Button("") {
+                print("CocktailCardView - Tap en favorito")
+            }
+            .buttonStyle(favButtonStyle(isFavorite: true, primaryColor: .white, size: 27))
+            .padding(AppStyle.Padding.regular)
         }
     }
 }

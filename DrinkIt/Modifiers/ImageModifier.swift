@@ -40,8 +40,62 @@ struct CustomImageModifier: ImageModifier {
     }
 }
 
+struct PrimarySystemImageModifier: ImageModifier {
+    
+    var size: CGFloat
+    var primaryColor: Color
+    
+    func body(image: Image) -> some View {
+        image
+            .symbolRenderingMode(.palette)
+            .foregroundStyle(primaryColor)
+            .font(.system(size: size))
+    }
+}
+
+struct SecondarySystemImageModifier: ImageModifier {
+    
+    var size: CGFloat
+    var primaryColor: Color
+    var secondaryColor: Color
+    
+    func body(image: Image) -> some View {
+        image
+            .symbolRenderingMode(.palette)
+            .foregroundStyle(primaryColor, secondaryColor)
+            .font(.system(size: size))
+    }
+}
+
+struct TertiarySystemImageModifier: ImageModifier {
+    
+    var size: CGFloat
+    var primaryColor: Color
+    var secondaryColor: Color
+    var tertiaryColor: Color
+    
+    func body(image: Image) -> some View {
+        image
+            .symbolRenderingMode(.palette)
+            .foregroundStyle(primaryColor, secondaryColor, tertiaryColor)
+            .font(.system(size: size))
+    }
+}
+
 extension Image {
     func customImageStyle(foregroundColor:Color = .accent, backgroundColor:Color = .clear, width: CGFloat = 30, height: CGFloat = 30, contentMode:ContentMode = .fit) -> some View {
         self.modifier(CustomImageModifier(foregroundColor: foregroundColor, backgroundColor: backgroundColor, width: width, height: height, contentMode: contentMode))
+    }
+    
+    func primarySystemImageStyle(size: CGFloat = 30, primaryColor: Color = .accent) -> some View {
+        self.modifier(PrimarySystemImageModifier(size: size, primaryColor: primaryColor))
+    }
+    
+    func secondarySystemImageStyle(size: CGFloat = 30, primaryColor: Color = .accent, secondaryColor: Color = .accent) -> some View {
+        self.modifier(SecondarySystemImageModifier(size: size, primaryColor: primaryColor, secondaryColor: secondaryColor))
+    }
+    
+    func tertiarySystemImageStyle(size: CGFloat = 30, primaryColor: Color = .accent, secondaryColor: Color = .accent, tertiaryColor: Color = .accent) -> some View {
+        self.modifier(TertiarySystemImageModifier(size: size, primaryColor: primaryColor, secondaryColor: secondaryColor, tertiaryColor: tertiaryColor))
     }
 }

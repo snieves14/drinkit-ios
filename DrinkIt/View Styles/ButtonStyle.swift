@@ -55,3 +55,16 @@ struct pillButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }
+
+struct favButtonStyle: ButtonStyle {
+    
+    var isFavorite: Bool = false
+    var primaryColor: Color = .accent
+    var size: CGFloat = 18
+    
+    func makeBody(configuration: Configuration) -> some View {
+        Image(systemName: isFavorite ? "heart.fill" : "heart")
+            .primarySystemImageStyle(size: size, primaryColor: primaryColor)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+    }
+}
