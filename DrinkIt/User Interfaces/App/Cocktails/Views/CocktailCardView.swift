@@ -31,9 +31,9 @@ struct CocktailCardView: View {
             if let name = cocktail.strDrink {
                 VStack(spacing: AppStyle.StackSpacing.small) {
                     Text(name)
-                        .textStyle(font: .semiBold, size: 14, foregroundColor: .white, alignment: .leading)
+                        .textStyle(font: .semiBold, foregroundColor: .white, alignment: .leading)
                     Text(cocktail.ingredientNames)
-                        .textStyle(font: .regular, size: 12, foregroundColor: .white, alignment: .leading, lineLimit: 3)
+                        .textStyle(font: .regular, size: AppStyle.TextSize.small, foregroundColor: .white, alignment: .leading, lineLimit: 3)
                 }
                 .padding([.horizontal, .bottom], 8)
                 .frame(width: cardWidth, alignment: .leading)

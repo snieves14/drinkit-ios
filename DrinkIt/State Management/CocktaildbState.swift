@@ -42,7 +42,7 @@ final class CocktaildbState {
             "i" : idDrink
         ]
         if shouldRefreshData(refreshPolicy: refreshPolicy) {
-            requestStatus = .unknown
+            requestStatus = refreshPolicy == .always ? .unknown : requestStatus
             LoaderManager.shared.startRequest()
             if let response = await CocktaildbWebServices.lookup(parameters: parameters) {
                 await MainActor.run {

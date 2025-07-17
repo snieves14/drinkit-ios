@@ -40,7 +40,7 @@ struct TabHeaderView: View {
     var body: some View {
         VStack {
             Text(headerType.title)
-                .textStyle(font: .semiBold, size: 27, alignment: .leading, lineLimit: 1, minimumScaleFactor: 0.5)
+                .textStyle(font: .semiBold, size: AppStyle.TextSize.heading1, alignment: .leading, lineLimit: 1, minimumScaleFactor: 0.5)
         }
     }
 }

@@ -43,7 +43,7 @@ struct TextModifier: ViewModifier {
 }
 
 extension View {
-    func textStyle(font: Quicksand = .regular, size: CGFloat = 15, foregroundColor: Color = .accent, textAlignment: TextAlignment = .leading, alignment: Alignment? = nil, horizontalFixedSize: Bool = false, verticalFixedSize: Bool = true, lineLimit: Int? = nil,  minimumScaleFactor: CGFloat = 1) -> some View {
+    func textStyle(font: Quicksand = .regular, size: CGFloat = AppStyle.TextSize.regular, foregroundColor: Color = .accent, textAlignment: TextAlignment = .leading, alignment: Alignment? = nil, horizontalFixedSize: Bool = false, verticalFixedSize: Bool = true, lineLimit: Int? = nil,  minimumScaleFactor: CGFloat = 1) -> some View {
         self.modifier(TextModifier(font: font, size: size, foregroundColor: foregroundColor, textAlignment: textAlignment, alignment: alignment, horizontalFixedSize: horizontalFixedSize, verticalFixedSize: verticalFixedSize, lineLimit: lineLimit, minimumScaleFactor: minimumScaleFactor))
     }
 }

@@ -17,7 +17,7 @@ struct IngredientCardView: View {
     var body: some View {
         VStack(spacing: AppStyle.StackSpacing.small) {
             Text(title)
-                .textStyle(size: 24, foregroundColor: .surface, textAlignment: .center, alignment: .center)
+                .textStyle(size: AppStyle.TextSize.heading2, foregroundColor: .surface, textAlignment: .center, alignment: .center)
             Text(description)
                 .textStyle(foregroundColor: .surface, alignment: .leading)
         }

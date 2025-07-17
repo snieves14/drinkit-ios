@@ -76,7 +76,7 @@ struct ToolbarViewModifier: ViewModifier {
                 if !isTitleHidden {
                     ToolbarItem(placement: .principal) {
                         Text(title.localized())
-                            .textStyle(font: .semiBold, size: 18, lineLimit: 1, minimumScaleFactor: 0.5)
+                            .textStyle(font: .semiBold, size: AppStyle.TextSize.large, lineLimit: 1, minimumScaleFactor: 0.5)
                     }
                 }
             }

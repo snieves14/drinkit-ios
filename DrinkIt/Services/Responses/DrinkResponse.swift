@@ -24,9 +24,11 @@ struct Cocktail: Codable {
     let strTags: String?
     let strVideo: String?
     let strCategory: String?
+    let strIBA: String?
     let strAlcoholic: String?
     let strGlass: String?
     let strInstructions: String?
+    let strInstructionsES: String?
     let strIngredient1: String?
     let strIngredient2: String?
     let strIngredient3: String?
@@ -68,5 +70,16 @@ struct Cocktail: Codable {
     
     var ingredientNames: String {
         ingredients.map(\.name).joined(separator: ", ")
+    }
+
+    var localizedInstructions: String? {
+        let languageCode = Locale.preferredLanguages.first ?? "en"
+        if languageCode.hasPrefix("es"),
+           let es = strInstructionsES, es.isNotBlank {
+            return es
+        } else if let en = strInstructions, en.isNotBlank {
+            return en
+        }
+        return nil
     }
 }

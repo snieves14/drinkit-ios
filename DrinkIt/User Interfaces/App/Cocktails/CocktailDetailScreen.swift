@@ -15,6 +15,11 @@ struct CocktailDetailScreen: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @State private var cocktaildbState = CocktaildbState()
     
+    private var cardWidth: CGFloat {
+        UIScreen.width - (2 * AppStyle.HorizontalPadding.regular)
+    }
+    private let cardHeight: CGFloat = UIScreen.height/4
+    
     // MARK: - Body
     var body: some View {
         VStack {
@@ -22,11 +27,12 @@ struct CocktailDetailScreen: View {
             case .success:
                 ScrollView {
                     VStack(spacing: AppStyle.StackSpacing.large) {
-                        if let name = cocktaildbState.cocktail?.strDrink {
-                            Text(name)
-                                .textStyle(font: .semiBold, size: 14, alignment: .leading)
-                        }
+                        KFImageView(imageURL: cocktail.strDrinkThumb?.withDrinkThumbnailSize(.large), imageURLWidth: cardWidth, imageURLHeight: cardHeight, contentMode: .fill)
+                        CocktailDetailInfoView(cocktail: cocktaildbState.cocktail)
+                        CocktailDetailInstructionsView(cocktail: cocktaildbState.cocktail)
+                        CocktailDetailIngredientsView(cocktail: cocktaildbState.cocktail)
                     }
+                    .padding(.bottom, AppStyle.VerticalPadding.extraLarge)
                 }
                 .scrollViewStyle()
                 .withTransition()

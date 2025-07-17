@@ -29,7 +29,7 @@ struct CocktailCardCompactView: View {
 
             if let name = cocktail.strDrink {
                 Text(name)
-                    .textStyle(font: .semiBold, size: 14, foregroundColor: .white, alignment: .leading)
+                    .textStyle(font: .semiBold, foregroundColor: .white, alignment: .leading)
                     .padding([.horizontal, .bottom], 8)
                     .frame(width: cardWidth)
             }

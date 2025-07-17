@@ -29,7 +29,7 @@ struct CocktailRowView: View {
             }
             if let name = cocktail.strDrink {
                 Text(name)
-                    .textStyle(font: .semiBold, size: 14, alignment: .leading)
+                    .textStyle(font: .semiBold, alignment: .leading)
             }
         }
         .contentShape(Rectangle())

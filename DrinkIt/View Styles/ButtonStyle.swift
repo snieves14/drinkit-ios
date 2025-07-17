@@ -14,7 +14,7 @@ struct primaryButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .textStyle(font: .semiBold, size: 17, foregroundColor: disabled ? .surface.opacity(0.5) : .surface)
+            .textStyle(font: .semiBold, size: AppStyle.TextSize.large, foregroundColor: disabled ? .surface.opacity(0.5) : .surface)
             .frame(height: 45)
             .frame(maxWidth: .infinity, alignment: alignment)
             .background(disabled ? .accent.opacity(0.5) : .accent)
@@ -47,7 +47,7 @@ struct pillButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .textStyle(size: 12, foregroundColor: .surface)
+            .textStyle(size: AppStyle.TextSize.small, foregroundColor: .surface)
             .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             .frame(height: 30)
             .background(.tertiaryBrand)
