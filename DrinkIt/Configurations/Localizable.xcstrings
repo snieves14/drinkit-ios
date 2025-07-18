@@ -14,6 +14,23 @@
         }
       }
     },
+    "blankData.title.favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven’t saved any favorite cocktails yet. Start exploring and discover your favorites!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no has guardado ningún cocktail como favorito. ¡Explora y descubre tus favoritos!"
+          }
+        }
+      }
+    },
     "blankData.title.primary" : {
       "localizations" : {
         "en" : {
@@ -31,6 +48,7 @@
       }
     },
     "blankData.title.secondary" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -386,7 +404,7 @@
       }
     },
     "randomCocktails.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {

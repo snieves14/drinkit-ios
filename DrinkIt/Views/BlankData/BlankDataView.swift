@@ -31,12 +31,15 @@ struct PrimaryBlankDataView: View {
 
 struct SecondaryBlankDataView: View {
     
+    // MARK: - Properties
+    var title: String = "blankData.title.secondary"
+    
     // MARK: - Body
     var body: some View {
         VStack {
             Image("logo_drinkit")
                 .customImageStyle(width: 150, height: 150)
-            Text("blankData.title.secondary")
+            Text(title.localized())
                 .textStyle(textAlignment: .center, alignment: .center)
         }
         .withTransition()

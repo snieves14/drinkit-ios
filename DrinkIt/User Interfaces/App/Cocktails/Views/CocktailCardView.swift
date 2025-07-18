@@ -43,10 +43,7 @@ struct CocktailCardView: View {
             .onTapGesture {
                 appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
             }
-            Button("") {
-                print("CocktailCardView - Tap en favorito")
-            }
-            .buttonStyle(favButtonStyle(isFavorite: true, primaryColor: .white, size: 27))
+            FavoriteButtonView(cocktail: cocktail, primaryColor: .white, size: 27)
             .padding(AppStyle.Padding.regular)
         }
     }

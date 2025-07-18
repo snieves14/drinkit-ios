@@ -49,10 +49,7 @@ struct CocktailDetailScreen: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("") {
-                   print("CocktailDetailScreen - Tap en favorito")
-                }
-                .buttonStyle(favButtonStyle(isFavorite: true))
+                FavoriteButtonView(cocktail: cocktail)
             }
         }
         .baseViewStyle(tabBar: .hidden, toolBarTitle: cocktail.strDrink ?? "cocktailDetail.title")

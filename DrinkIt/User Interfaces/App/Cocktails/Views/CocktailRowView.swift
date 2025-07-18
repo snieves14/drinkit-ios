@@ -32,10 +32,7 @@ struct CocktailRowView: View {
                     .textStyle(font: .semiBold, alignment: .leading)
             }
             Spacer()
-            Button("") {
-                print("CocktailRowView - Tap en favorito")
-            }
-            .buttonStyle(favButtonStyle(isFavorite: false))
+            FavoriteButtonView(cocktail: cocktail)
         }
         .contentShape(Rectangle())
         .onTapGesture {
