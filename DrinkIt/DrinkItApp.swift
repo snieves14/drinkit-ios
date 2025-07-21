@@ -16,18 +16,9 @@ struct DrinkItApp: App {
     
     @State private var appState = AppState()
     @State private var cocktaildbListsState = CocktaildbListsState()
-    @State private var favoriteCocktailModelContainer: ModelContainer
-    @State private var favoriteCocktailState: FavoriteCocktailState?
     
     @State private var isLaunchScreenVisible = true
     @State private var shouldShowTabBar = true
-
-    // MARK: - Init
-    init() {
-        let modelContainer = try! ModelContainer(for: FavoriteCocktail.self)
-        _favoriteCocktailModelContainer = State(initialValue: modelContainer)
-        _favoriteCocktailState = State(initialValue: FavoriteCocktailState(modelContext: modelContainer.mainContext))
-    }
     
     // MARK: - Body
     var body: some Scene {
@@ -38,8 +29,8 @@ struct DrinkItApp: App {
                     .loaderModifier()
                     .environment(appState)
                     .environment(cocktaildbListsState)
-                    .environment(favoriteCocktailState)
                     .environment(\.shouldShowTabBar, $shouldShowTabBar)
+                    .modelContainer(for: FavoriteCocktail.self)
                     .task {
                         try? await Task.sleep(nanoseconds: 2_000_000_000)
                         withAnimation(.easeInOut(duration: 0.8)) {

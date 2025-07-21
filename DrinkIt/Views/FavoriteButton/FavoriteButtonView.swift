@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FavoriteButtonView: View {
     
@@ -14,13 +15,31 @@ struct FavoriteButtonView: View {
     var primaryColor: Color = .accent
     var size: CGFloat = 18
     
-    @Environment(FavoriteCocktailState.self) var favoriteCocktailState
+    @Environment(\.modelContext) private var context
+    @Query private var favoriteCocktails: [FavoriteCocktail]
+    
+    private var isFavorite: Bool {
+        favoriteCocktails.contains(where: { $0.idDrink == cocktail.idDrink })
+    }
     
     // MARK: - Body
     var body: some View {
         Button("") {
-            favoriteCocktailState.toggleFavorite(for: cocktail)
+            toggleFavorite()
         }
-        .buttonStyle(favButtonStyle(isFavorite: favoriteCocktailState.isFavorite(for: cocktail), primaryColor: primaryColor, size: size))
+        .buttonStyle(favButtonStyle(isFavorite: isFavorite, primaryColor: primaryColor, size: size))
+    }
+
+   
+    // MARK: - Private functions
+    private func toggleFavorite() {
+        guard let idDrink = cocktail.idDrink else { return }
+        if let existing = favoriteCocktails.first(where: { $0.idDrink == idDrink }) {
+            context.delete(existing)
+        } else {
+            let newFavorite = FavoriteCocktail(idDrink: idDrink, strDrink: cocktail.strDrink, strDrinkThumb: cocktail.strDrinkThumb)
+            context.insert(newFavorite)
+        }
+        try? context.save()
     }
 }

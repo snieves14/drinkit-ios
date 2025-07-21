@@ -6,20 +6,21 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FavoritesScreen: View {
     
     // MARK: - Properties
-    @Environment(FavoriteCocktailState.self) var favoriteCocktailState
+    @Query(sort: \FavoriteCocktail.strDrink) private var favoriteCocktails: [FavoriteCocktail]
     
     // MARK: - Body
     var body: some View {
         VStack {
             TabHeaderView(headerType: .favorites)
-            if !favoriteCocktailState.cocktails.isEmpty {
+            if !favoriteCocktails.isEmpty {
                 ScrollView {
                     VStack(alignment: .leading, spacing: AppStyle.ScrollSpacing.small) {
-                        ForEach(favoriteCocktailState.cocktails, id: \.idDrink) { favoriteCocktail in
+                        ForEach(favoriteCocktails, id: \.idDrink) { favoriteCocktail in
                             CocktailRowView(cocktail: favoriteCocktail.asCocktail)
                         }
                     }
