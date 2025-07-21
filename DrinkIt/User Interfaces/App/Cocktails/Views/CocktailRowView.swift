@@ -11,6 +11,7 @@ struct CocktailRowView: View {
     
     // MARK: - Properties
     let cocktail: Cocktail
+    var shouldShowFavoriteButton: Bool = true
     
     @Environment(AppState.self) var appState
     
@@ -32,7 +33,9 @@ struct CocktailRowView: View {
                     .textStyle(font: .semiBold, alignment: .leading)
             }
             Spacer()
-            FavoriteButtonView(cocktail: cocktail)
+            if shouldShowFavoriteButton {
+                FavoriteButtonView(cocktail: cocktail)
+            }
         }
         .contentShape(Rectangle())
         .onTapGesture {

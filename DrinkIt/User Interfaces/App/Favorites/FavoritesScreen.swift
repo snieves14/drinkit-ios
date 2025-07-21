@@ -21,7 +21,7 @@ struct FavoritesScreen: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: AppStyle.ScrollSpacing.small) {
                         ForEach(favoriteCocktails, id: \.idDrink) { favoriteCocktail in
-                            CocktailRowView(cocktail: favoriteCocktail.asCocktail)
+                            CocktailRowView(cocktail: favoriteCocktail.asCocktail, shouldShowFavoriteButton: false)
                         }
                     }
                     .padding(.bottom, AppStyle.VerticalPadding.regular)
