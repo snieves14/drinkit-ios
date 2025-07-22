@@ -42,7 +42,6 @@ struct CocktailDetailScreen: View {
                 PrimaryBlankDataView {
                     lookup(refreshPolicy: .always)
                 }
-                .padding(.horizontal, AppStyle.HorizontalPadding.regular)
             default:
                 EmptyView()
             }

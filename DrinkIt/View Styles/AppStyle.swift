@@ -29,6 +29,7 @@ struct AppStyle {
         static let regular: CGFloat = 10
         static let large: CGFloat = 15
         static let extraLarge: CGFloat = 20
+        static let xxLarge: CGFloat = 25
     }
     
     struct HorizontalPadding {

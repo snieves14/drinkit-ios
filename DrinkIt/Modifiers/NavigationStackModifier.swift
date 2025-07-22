@@ -27,6 +27,7 @@ enum Route: Hashable {
     
     enum CategoriesManagementRoutes: Hashable, Equatable {
         case categoryFilterScreen(categoryType: CategoryType)
+        case categoryCocktailsScreen(title: String, categoryType: CategoryType)
     }
 }
 
@@ -54,6 +55,8 @@ struct CategoriesManagementRouter {
         switch routes {
         case .categoryFilterScreen(let categoryType):
             CategoryFilterScreen(categoryType: categoryType)
+        case .categoryCocktailsScreen(let string, let categoryType):
+            CategoryCocktailsScreen(title: string, categoryType: categoryType)
         }
     }
 }
