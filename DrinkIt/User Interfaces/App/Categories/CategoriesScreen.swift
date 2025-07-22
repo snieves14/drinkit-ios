@@ -35,6 +35,15 @@ public enum CategoryType: CaseIterable {
         case .glasses: return "categories.glasses.title"
         }
     }
+
+    var parameterKey: String {
+        switch self {
+        case .ingredients: return "i"
+        case .alcohol:     return "a"
+        case .styles:      return "c"
+        case .glasses:     return "g"
+        }
+    }
 }
 
 struct CategoriesScreen: View {

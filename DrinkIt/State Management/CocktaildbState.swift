@@ -23,6 +23,9 @@ final class CocktaildbState {
     // MARK: - Data Properties [Search request]
     var ingredientDescription: String = ""
     
+    // MARK: - Data Properties [Filter requests]
+    var cocktails: [Cocktail] = []
+    
     // MARK: - Networking functions
     private func shouldRefreshData(refreshPolicy: RefreshPolicy) -> Bool {
         switch refreshPolicy {
@@ -81,6 +84,26 @@ final class CocktaildbState {
                     ingredientDescription = data
                 }
                 requestStatus = .success
+            }
+        }
+        LoaderManager.shared.endRequest()
+    }
+    
+    // MARK: - Filter by ingredient request
+    func filterBy(for categoryType: CategoryType, value: String) async {
+        guard cocktails.isEmpty && requestStatus != .empty else { return }
+        let parameters: Parameters = [
+            categoryType.parameterKey : value
+        ]
+        LoaderManager.shared.startRequest()
+        if let response = await CocktaildbWebServices.filter(parameters: parameters) {
+            await MainActor.run {
+                if let data = response.drinks {
+                    cocktails = data
+                    requestStatus =  data.isEmpty ? .empty : .success
+                } else {
+                    requestStatus = .failure
+                }
             }
         }
         LoaderManager.shared.endRequest()
