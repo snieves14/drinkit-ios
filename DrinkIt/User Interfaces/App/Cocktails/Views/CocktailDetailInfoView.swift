@@ -7,33 +7,30 @@
 
 import SwiftUI
 
+// MARK: - Enums
+private enum CocktailDetailSectionType {
+    case category
+    case iba
+    case alcoholic
+    case glass
+    
+    var title: String {
+        rawTitle.localized()
+    }
+    
+    private var rawTitle: String {
+        switch self {
+        case .alcoholic: return "cocktailDetail.alcoholic"
+        case .glass: return "cocktailDetail.glass"
+        case .category: return "cocktailDetail.category"
+        case .iba: return "cocktailDetail.iba"
+        }
+    }
+}
+
 struct CocktailDetailInfoView: View {
     
     // MARK: - Properties
-    private enum CocktailDetailSectionType {
-        case category
-        case iba
-        case alcoholic
-        case glass
-        
-        var title: String {
-            rawTitle.localized()
-        }
-        
-        private var rawTitle: String {
-            switch self {
-            case .alcoholic:
-                return "cocktailDetail.alcoholic"
-            case .glass:
-                return "cocktailDetail.glass"
-            case .category:
-                return "cocktailDetail.category"
-            case .iba:
-                return "cocktailDetail.iba"
-            }
-        }
-    }
-    
     let cocktail: Cocktail?
     
     // MARK: - Body

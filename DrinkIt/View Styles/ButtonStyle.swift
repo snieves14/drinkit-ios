@@ -43,8 +43,26 @@ struct tabItemButtonStyle : ButtonStyle {
     }
 }
 
+struct categoryButtonStyle: ButtonStyle {
+    var image: String
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            Image(image)
+                .customImageStyle(width: UIScreen.height/12, height: UIScreen.height/12)
+            configuration.label
+                .textStyle(font: .semiBold, size: AppStyle.TextSize.large, lineLimit: 2, minimumScaleFactor: 0.8)
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: UIScreen.height/3.3)
+        .background(.surfaceDim)
+        .cornerRadius(AppStyle.CornerRadius.regular)
+        .scaleEffect(configuration.isPressed ? 0.95 : 1)
+    }
+}
+
 struct pillButtonStyle: ButtonStyle {
-    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .textStyle(size: AppStyle.TextSize.small, foregroundColor: .surface)

@@ -10,6 +10,7 @@ import SwiftUI
 enum Route: Hashable {
     
     case cocktailsManagement(CocktailsManagementRoutes)
+    case categoriesManagement(CategoriesManagementRoutes)
     
     enum CocktailsManagementRoutes: Hashable, Equatable {
         case cocktailsScreen(cocktailSectionType: CocktailSectionType, cocktails: [Cocktail])
@@ -22,6 +23,10 @@ enum Route: Hashable {
         static func == (lhs: CocktailsManagementRoutes, rhs: CocktailsManagementRoutes) -> Bool {
             return true
         }
+    }
+    
+    enum CategoriesManagementRoutes: Hashable, Equatable {
+        case categoryFilterScreen(categoryType: CategoryType)
     }
 }
 
@@ -40,6 +45,19 @@ struct CocktailsManagementRouter {
     }
 }
 
+struct CategoriesManagementRouter {
+    
+    let routes: Route.CategoriesManagementRoutes
+    
+    @ViewBuilder
+    func configure() -> some View {
+        switch routes {
+        case .categoryFilterScreen(let categoryType):
+            CategoryFilterScreen(categoryType: categoryType)
+        }
+    }
+}
+
 struct NavigationStackModifier: ViewModifier {
     
     @Environment(\.shouldShowTabBar) var shouldShowTabBar
@@ -50,6 +68,9 @@ struct NavigationStackModifier: ViewModifier {
                 switch route {
                 case .cocktailsManagement(let routes):
                     CocktailsManagementRouter(routes: routes).configure()
+                        .toolbar(shouldShowTabBar.wrappedValue ? .visible : .hidden, for: .tabBar)
+                case .categoriesManagement(let routes):
+                    CategoriesManagementRouter(routes: routes).configure()
                         .toolbar(shouldShowTabBar.wrappedValue ? .visible : .hidden, for: .tabBar)
                 }
             }
