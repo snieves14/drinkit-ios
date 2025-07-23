@@ -25,36 +25,29 @@ struct DrinkItApp: App {
         WindowGroup {
             ZStack {
                 Color.surface.ignoresSafeArea()
-                rootViewBuilder
-                    .loaderModifier()
-                    .environment(appState)
-                    .environment(cocktaildbListsState)
-                    .environment(\.shouldShowTabBar, $shouldShowTabBar)
-                    .modelContainer(for: FavoriteCocktail.self)
-                    .task {
-                        try? await Task.sleep(nanoseconds: 2_000_000_000)
-                        withAnimation(.easeInOut(duration: 0.8)) {
-                            isLaunchScreenVisible = false
-                        }
-                    }
-            }
-        }
-    }
-    
-    // MARK: - Root View Builder
-    @ViewBuilder
-    private var rootViewBuilder: some View {
-        Group {
-            if isLaunchScreenVisible {
-                LaunchScreen()
-            } else {
-                if appState.hasSeenOnboarding {
-                    MainTabScreen()
+                if isLaunchScreenVisible {
+                    LaunchScreen()
                 } else {
-                    OnboardingScreen()
+                    if appState.hasSeenOnboarding {
+                        MainTabScreen()
+                            .withTransition()
+                    } else {
+                        OnboardingScreen()
+                            .withTransition()
+                    }
+                }
+            }
+            .loaderModifier()
+            .environment(appState)
+            .environment(cocktaildbListsState)
+            .environment(\.shouldShowTabBar, $shouldShowTabBar)
+            .modelContainer(for: FavoriteCocktail.self)
+            .task {
+                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                withAnimation(.easeInOut(duration: 0.8)) {
+                    isLaunchScreenVisible = false
                 }
             }
         }
-        .withTransition()
     }
 }

@@ -35,6 +35,7 @@ struct CocktailCardCompactView: View {
                         .frame(width: cardWidth)
                 }
             }
+            .contentShape(Rectangle())
             .onTapGesture {
                 appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
             }

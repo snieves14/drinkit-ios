@@ -40,6 +40,7 @@ struct CocktailCardView: View {
                     .frame(width: cardWidth, alignment: .leading)
                 }
             }
+            .contentShape(Rectangle())
             .onTapGesture {
                 appState.pushTo(.cocktailsManagement(.cocktailDetailScreen(cocktail: cocktail)))
             }
