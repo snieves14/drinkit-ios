@@ -12,9 +12,17 @@ struct CategoryCocktailsScreen: View {
     // MARK: - Properties
     let title: String
     let categoryType: CategoryType
-   
+    
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @State private var cocktaildbState = CocktaildbState()
+    
+    @State private var searchText: String = ""
+    private var filteredCocktails: [Cocktail] {
+        guard !searchText.isEmpty else { return cocktaildbState.cocktails }
+        return cocktaildbState.cocktails.filter {
+            $0.strDrink?.localizedCaseInsensitiveContains(searchText) == true
+        }
+    }
     
     // MARK: - Body
     var body: some View {
@@ -22,17 +30,21 @@ struct CategoryCocktailsScreen: View {
             switch cocktaildbState.requestStatus {
             case .success:
                 ScrollView {
-                    VStack(spacing: AppStyle.StackSpacing.large) {
-                        VStack(alignment: .leading, spacing: AppStyle.ScrollSpacing.small) {
-                            ForEach(cocktaildbState.cocktails, id: \.idDrink) { cocktail in
-                                CocktailRowView(cocktail: cocktail)
+                    if filteredCocktails.isEmpty {
+                        SecondaryBlankDataView(title: "blankData.title.emptySearch")
+                    } else {
+                        VStack(spacing: AppStyle.StackSpacing.large) {
+                            VStack(alignment: .leading, spacing: AppStyle.ScrollSpacing.small) {
+                                ForEach(filteredCocktails, id: \.idDrink) { cocktail in
+                                    CocktailRowView(cocktail: cocktail)
+                                }
                             }
+                            .padding(.bottom, AppStyle.VerticalPadding.xxLarge)
                         }
-                        .padding(.bottom, AppStyle.VerticalPadding.extraLarge)
+                        .withTransition()
                     }
                 }
                 .scrollViewStyle()
-                .withTransition()
             case .empty:
                 SecondaryBlankDataView()
             case .failure:
@@ -46,6 +58,11 @@ struct CategoryCocktailsScreen: View {
         .baseViewStyle(tabBar: .hidden, toolBarTitle: title)
         .padding(.bottom, safeAreaInsets.bottom != 0 ? 0 : -8) ///ScrollView flush with the bottom screen
         .edgesIgnoringSafeArea(.bottom) ///Allows scrolling under the home indicator
+        .if(cocktaildbState.requestStatus == .success || cocktaildbState.requestStatus == .unknown) {
+            $0
+                .searchable(text: $searchText)
+                .scrollDismissesKeyboard(.immediately)
+        }
         .onAppear {
             filterRequest()
         }

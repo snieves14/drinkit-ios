@@ -14,6 +14,23 @@
         }
       }
     },
+    "blankData.title.emptySearch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No results found for your search"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se han encontrado resultados para tu búsqueda"
+          }
+        }
+      }
+    },
     "blankData.title.favorites" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -65,7 +82,7 @@
       }
     },
     "categories.alcohol.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -82,7 +99,7 @@
       }
     },
     "categories.glasses.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -99,7 +116,7 @@
       }
     },
     "categories.ingredients.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -116,7 +133,7 @@
       }
     },
     "categories.styles.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
