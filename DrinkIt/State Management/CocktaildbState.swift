@@ -104,6 +104,34 @@ final class CocktaildbState {
         LoaderManager.shared.endRequest()
     }
     
+    // MARK: - Search by name request(Publisher)
+    func searchByPublisher() -> AnyCancellable {
+        searchTextSubject
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .handleEvents(receiveOutput: { [weak self] value in
+                if value.count <= 1 {
+                    self?.resetFilterResults()
+                }
+            })
+            .filter { $0.count > 1 }
+            .map { value -> AnyPublisher<DrinkResponse, Never> in
+                let parameters: Parameters = ["s": value]
+                return CocktaildbWebServices.searchPublisher(parameters: parameters)
+            }
+            .switchToLatest()
+            .sink { [weak self] response in
+                guard let self else { return }
+                if let data = response.drinks {
+                    cocktails = data
+                    requestStatus = data.isEmpty ? .empty : .success
+                } else {
+                    cocktails = []
+                    requestStatus = .failure
+                }
+            }
+    }
+    
     // MARK: - Filter by ingredient request
     func filterBy(for categoryType: CategoryType, value: String) async {
         guard cocktails.isEmpty && requestStatus != .empty else { return }
@@ -124,7 +152,7 @@ final class CocktaildbState {
         LoaderManager.shared.endRequest()
     }
     
-    
+    // MARK: - Filter by ingredient request(Publisher)
     func filterByPublisher(for categoryType: CategoryType) -> AnyCancellable {
         searchTextSubject
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)

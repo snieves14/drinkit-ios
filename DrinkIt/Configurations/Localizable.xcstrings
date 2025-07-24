@@ -14,6 +14,23 @@
         }
       }
     },
+    "blankData.title.cocktailsSearch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a cocktail name to explore more info"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce un cóctel y accede a sus detalles"
+          }
+        }
+      }
+    },
     "blankData.title.emptySearch" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -298,6 +315,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cocktail"
+          }
+        }
+      }
+    },
+    "cocktailsSearch.search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a cocktail…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce un cocktail…"
           }
         }
       }

@@ -54,6 +54,19 @@ class CocktaildbWebServices {
         }
     }
     
+    // MARK: - Search request(Publisher)
+    static func searchPublisher(parameters: Parameters) -> AnyPublisher<DrinkResponse, Never> {
+        WebServiceManager.shared.getPublisher(path: "/search.php", parameters: parameters)
+            .tryMap { data in
+                try WebServiceManager.parseData(data: data) as DrinkResponse
+            }
+            .catch { error in
+                Just(DrinkResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], drinks: nil))
+                    .setFailureType(to: Never.self)
+            }
+            .eraseToAnyPublisher()
+    }
+    
     // MARK: - Filter request
     static func filter(parameters: Parameters) async -> DrinkResponse? {
         do {
@@ -67,6 +80,7 @@ class CocktaildbWebServices {
         }
     }
     
+    // MARK: - Filter request (Publisher)
     static func filterPublisher(parameters: Parameters) -> AnyPublisher<DrinkResponse, Never> {
         WebServiceManager.shared.getPublisher(path: "/filter.php", parameters: parameters)
             .tryMap { data in
