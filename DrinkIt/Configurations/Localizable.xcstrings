@@ -302,6 +302,23 @@
         }
       }
     },
+    "cocktailsSearch.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search cocktails"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscador de Cocktails"
+          }
+        }
+      }
+    },
     "common.appName" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -460,30 +477,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingredients"
+            "value" : "Search ingredients"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingredientes"
-          }
-        }
-      }
-    },
-    "myCocktails.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My cocktails"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mis cocktails"
+            "value" : "Buscador de ingredientes"
           }
         }
       }

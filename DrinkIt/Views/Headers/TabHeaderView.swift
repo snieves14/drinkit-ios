@@ -16,7 +16,7 @@ struct TabHeaderView: View {
         case categories
         case favorites
         case ingredientsSearch
-        case myCocktails
+        case cocktailsSearch
 
         var title: String {
             rawTitle.localized()
@@ -28,7 +28,7 @@ struct TabHeaderView: View {
             case .categories: return "categories.title"
             case .favorites: return "favorites.title"
             case .ingredientsSearch: return "ingredientsSearch.title"
-            case .myCocktails: return "myCocktails.title"
+            case .cocktailsSearch: return "cocktailsSearch.title"
             }
         }
     }
