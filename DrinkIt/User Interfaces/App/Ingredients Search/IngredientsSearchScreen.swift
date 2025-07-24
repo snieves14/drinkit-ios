@@ -1,5 +1,5 @@
 //
-//  MyIngredientsScreen.swift
+//  IngredientsSearchScreen.swift
 //  DrinkIt
 //
 //  Created by Santi Nieves on 7/7/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct MyIngredientsScreen: View {
+struct IngredientsSearchScreen: View {
     
     // MARK: - Properties
     @Environment(\.safeAreaInsets) private var safeAreaInsets
@@ -19,9 +19,9 @@ struct MyIngredientsScreen: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            TabHeaderView(headerType: .myIngredients)
+            TabHeaderView(headerType: .ingredientsSearch)
             VStack(spacing: AppStyle.StackSpacing.regular) {
-                SearchBarView(searchText: $cocktaildbState.searchText, placeholder: "myIngredients.search") {
+                SearchBarView(searchText: $cocktaildbState.searchText, placeholder: "ingredientsSearch.search") {
                     cocktaildbState.searchText = ""
                     cocktaildbState.resetFilterResults()
                 }
@@ -49,7 +49,7 @@ struct MyIngredientsScreen: View {
                 case .failure:
                     SecondaryBlankDataView()
                 default:
-                    SecondaryBlankDataView(title: "blankData.title.myIngredients")
+                    SecondaryBlankDataView(title: "blankData.title.ingredientsSearch")
                 }
             }
         }

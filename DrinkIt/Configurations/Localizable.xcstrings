@@ -48,7 +48,7 @@
         }
       }
     },
-    "blankData.title.myIngredients" : {
+    "blankData.title.ingredientsSearch" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -437,24 +437,7 @@
         }
       }
     },
-    "myCocktails.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My cocktails"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mis cocktails"
-          }
-        }
-      }
-    },
-    "myIngredients.search" : {
+    "ingredientsSearch.search" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -471,19 +454,36 @@
         }
       }
     },
-    "myIngredients.title" : {
+    "ingredientsSearch.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "My ingredients"
+            "value" : "Ingredients"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mis ingredientes"
+            "value" : "Ingredientes"
+          }
+        }
+      }
+    },
+    "myCocktails.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My cocktails"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis cocktails"
           }
         }
       }

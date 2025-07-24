@@ -12,7 +12,7 @@ private enum TabbedItems: Int, CaseIterable {
     case home = 0
     case categories
     case favorites
-    case myIngredients
+    case ingredientsSearch
     case myCocktails
 
     var iconName: String {
@@ -20,7 +20,7 @@ private enum TabbedItems: Int, CaseIterable {
         case .home: return "icon_tab_home"
         case .categories: return "icon_tab_categories"
         case .favorites: return "icon_tab_favorites"
-        case .myIngredients: return "icon_tab_my_ingredients"
+        case .ingredientsSearch: return "icon_tab_ingredients_search"
         case .myCocktails: return "icon_tab_my_cocktails"
         }
     }
@@ -50,7 +50,7 @@ struct MainTabScreen: View {
                         .navigationStackModifier()
                 }.tag(2)
                 NavigationStack(path: $appState.routes[3]){
-                    MyIngredientsScreen()
+                    IngredientsSearchScreen()
                         .navigationStackModifier()
                 }.tag(3)
                 NavigationStack(path: $appState.routes[4]){

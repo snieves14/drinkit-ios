@@ -23,7 +23,7 @@ final class AppState {
     /// Routes[0] -> Home routes.
     /// Routes[1] -> Categories routes.
     /// Routes[2] -> Favorites routes.
-    /// Routes[3] -> MyIngredients  routes.
+    /// Routes[3] -> IngredientsSearch  routes.
     /// Routes[4] -> MyCocktails Routes.
     var routes: [[Route]] = []
     var routeIndex = 0

@@ -15,7 +15,7 @@ struct TabHeaderView: View {
         case home
         case categories
         case favorites
-        case myIngredients
+        case ingredientsSearch
         case myCocktails
 
         var title: String {
@@ -27,7 +27,7 @@ struct TabHeaderView: View {
             case .home: return "home.title"
             case .categories: return "categories.title"
             case .favorites: return "favorites.title"
-            case .myIngredients: return "myIngredients.title"
+            case .ingredientsSearch: return "ingredientsSearch.title"
             case .myCocktails: return "myCocktails.title"
             }
         }
