@@ -86,3 +86,11 @@ struct favButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }
+
+struct clearSearchButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Image(systemName: "xmark.circle.fill")
+            .secondarySystemImageStyle(size: 20, primaryColor: .surfaceDim)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+    }
+}

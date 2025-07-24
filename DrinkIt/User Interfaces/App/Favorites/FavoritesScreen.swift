@@ -11,6 +11,8 @@ import SwiftData
 struct FavoritesScreen: View {
     
     // MARK: - Properties
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
+    
     @Query(sort: \FavoriteCocktail.strDrink) private var favoriteCocktails: [FavoriteCocktail]
     
     // MARK: - Body
@@ -31,7 +33,6 @@ struct FavoritesScreen: View {
                 SecondaryBlankDataView(title: "blankData.title.favorites")
             }
         }
-        .padding(.bottom, -6) ///ScrollView flush with the TabBar
-        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true)
+        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true, bottomPadding: safeAreaInsets.bottom == 0 ? AppStyle.VerticalPadding.xxxLarge : AppStyle.VerticalPadding.large)
     }
 }

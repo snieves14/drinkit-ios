@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import Alamofire
 
 @MainActor
@@ -26,6 +27,14 @@ final class CocktaildbState {
     // MARK: - Data Properties [Filter requests]
     var cocktails: [Cocktail] = []
     
+    // MARK: - Data Properties [filterByPublisher requests]
+    private let searchTextSubject = PassthroughSubject<String, Never>()
+    var searchText: String = "" {
+        didSet {
+            searchTextSubject.send(searchText)
+        }
+    }
+    
     // MARK: - Networking functions
     private func shouldRefreshData(refreshPolicy: RefreshPolicy) -> Bool {
         switch refreshPolicy {
@@ -37,6 +46,12 @@ final class CocktaildbState {
         case .never:
             return lastRefreshDate == nil
         }
+    }
+    
+    // MARK: - filterByPublisher functions
+    func resetFilterResults() {
+        cocktails = []
+        requestStatus = .unknown
     }
     
     // MARK: - Lookup cocktail request
@@ -107,5 +122,33 @@ final class CocktaildbState {
             }
         }
         LoaderManager.shared.endRequest()
+    }
+    
+    
+    func filterByPublisher(for categoryType: CategoryType) -> AnyCancellable {
+        searchTextSubject
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .handleEvents(receiveOutput: { [weak self] value in
+                if value.count <= 2 {
+                    self?.resetFilterResults()
+                }
+            })
+            .filter { $0.count > 2 }
+            .map { value -> AnyPublisher<DrinkResponse, Never> in
+                let parameters: Parameters = [categoryType.parameterKey: value]
+                return CocktaildbWebServices.filterPublisher(parameters: parameters)
+            }
+            .switchToLatest()
+            .sink { [weak self] response in
+                guard let self else { return }
+                if let data = response.drinks {
+                    cocktails = data
+                    requestStatus = data.isEmpty ? .empty : .success
+                } else {
+                    cocktails = []
+                    requestStatus = .failure
+                }
+            }
     }
 }

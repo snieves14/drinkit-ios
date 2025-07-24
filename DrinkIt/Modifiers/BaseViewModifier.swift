@@ -14,22 +14,29 @@ struct BaseViewModifier: ViewModifier {
     var isBackButtonHidden: Bool
     var isTitleHidden: Bool
     var popTo: Int
+    var shouldScrollUnderHomeIndicator: Bool
     var alignment: Alignment
-    var verticalPadding: CGFloat?
+    var topPadding: CGFloat?
+    var bottomPadding: CGFloat?
     var horizontalPadding: CGFloat?
     
     @Environment(\.shouldShowTabBar) var shouldShowTabBar
     
     func body(content: Content) -> some View {
         ZStack {
-            Color.surface.edgesIgnoringSafeArea(.all)
+            Color.surface.ignoresSafeArea()
             content
                 .frame(maxHeight: .infinity, alignment: alignment)
-                .padding(.vertical, verticalPadding ?? AppStyle.VerticalPadding.small)
+                .padding(.top, topPadding ?? AppStyle.VerticalPadding.small)
+                .padding(.bottom, bottomPadding ?? AppStyle.VerticalPadding.small)
                 .padding(.horizontal, horizontalPadding ?? AppStyle.HorizontalPadding.regular)
         }
         .toolbarStyle(title: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo)
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .if(shouldScrollUnderHomeIndicator) {
+            $0
+                .edgesIgnoringSafeArea(.bottom)
+        }
         .onAppear {
             shouldShowTabBar.wrappedValue = tabBar == .visible ? true : false
         }
@@ -110,8 +117,8 @@ struct AnimatedTransitionViewModifier: ViewModifier {
 
 extension View {
     
-    public func baseViewStyle(tabBar: Visibility = .visible, toolBarTitle: String = "", isBackButtonHidden: Bool = false, isTitleHidden: Bool = false, popTo: Int = 1, alignment: Alignment = .top, verticalPadding: CGFloat? = nil, horizontalPadding: CGFloat? = nil) -> some View {
-        modifier(BaseViewModifier(tabBar: tabBar, toolBarTitle: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo, alignment: alignment, verticalPadding: verticalPadding, horizontalPadding: horizontalPadding))
+    public func baseViewStyle(tabBar: Visibility = .visible, toolBarTitle: String = "", isBackButtonHidden: Bool = false, isTitleHidden: Bool = false, popTo: Int = 1, shouldScrollUnderHomeIndicator: Bool = false, alignment: Alignment = .top, topPadding: CGFloat? = nil, bottomPadding: CGFloat? = nil, horizontalPadding: CGFloat? = nil) -> some View {
+        modifier(BaseViewModifier(tabBar: tabBar, toolBarTitle: toolBarTitle, isBackButtonHidden: isBackButtonHidden, isTitleHidden: isTitleHidden, popTo: popTo, shouldScrollUnderHomeIndicator: shouldScrollUnderHomeIndicator, alignment: alignment, topPadding: topPadding, bottomPadding: bottomPadding, horizontalPadding: horizontalPadding))
     }
     
     fileprivate func toolbarStyle(title: String = "", isBackButtonHidden : Bool = false, isTitleHidden : Bool = false, popTo: Int = 1) -> some View {

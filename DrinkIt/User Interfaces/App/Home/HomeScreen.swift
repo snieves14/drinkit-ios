@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeScreen: View {
     
     // MARK: - Properties
+    @Environment(\.safeAreaInsets) var safeAreaInsets
     @Environment(CocktaildbListsState.self) private var cocktaildbListsState
     
     @State private var homeState = HomeState()
@@ -49,8 +50,7 @@ struct HomeScreen: View {
                 EmptyView()
             }
         }
-        .padding(.bottom, -6) ///ScrollView flush with the TabBar
-        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true, horizontalPadding: 0)
+        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true, bottomPadding: safeAreaInsets.bottom == 0 ? AppStyle.VerticalPadding.xxxLarge : AppStyle.VerticalPadding.large, horizontalPadding: 0)
         .onAppear {
             loadHome()
         }

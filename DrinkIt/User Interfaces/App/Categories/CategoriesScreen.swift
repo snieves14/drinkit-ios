@@ -48,6 +48,9 @@ public enum CategoryType: CaseIterable {
 
 struct CategoriesScreen: View {
     
+    // MARK: - Properties
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
+    
     // MARK: - Body
     var body: some View {
         VStack {
@@ -63,6 +66,6 @@ struct CategoriesScreen: View {
             }
             .frame(maxHeight: .infinity)
         }
-        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true, alignment: .center)
+        .baseViewStyle(isBackButtonHidden: true, isTitleHidden: true, alignment: .center, bottomPadding: safeAreaInsets.bottom == 0 ? AppStyle.VerticalPadding.xxxLarge : AppStyle.VerticalPadding.large)
     }
 }

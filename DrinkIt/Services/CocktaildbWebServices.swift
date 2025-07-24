@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import Combine
 
 class CocktaildbWebServices {
     // MARK: - Random cocktail request
@@ -34,7 +35,7 @@ class CocktaildbWebServices {
         }
     }
     
-    // MARK: - Search request    
+    // MARK: - Search request
     static func search<T: Decodable>(parameters: Parameters) async -> T? {
         do {
             let data = try await WebServiceManager.shared.get(
@@ -64,6 +65,18 @@ class CocktaildbWebServices {
         } catch let error {
             return DrinkResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], drinks: nil)
         }
+    }
+    
+    static func filterPublisher(parameters: Parameters) -> AnyPublisher<DrinkResponse, Never> {
+        WebServiceManager.shared.getPublisher(path: "/filter.php", parameters: parameters)
+            .tryMap { data in
+                try WebServiceManager.parseData(data: data) as DrinkResponse
+            }
+            .catch { error in
+                Just(DrinkResponse(errors: [ErrorResponse(code: error.localizedDescription, field: "", data: "")], drinks: nil))
+                    .setFailureType(to: Never.self)
+            }
+            .eraseToAnyPublisher()
     }
     
     // MARK: - lookup request

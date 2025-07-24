@@ -51,9 +51,7 @@ struct CocktailDetailScreen: View {
                 FavoriteButtonView(cocktail: cocktail)
             }
         }
-        .baseViewStyle(tabBar: .hidden, toolBarTitle: cocktail.strDrink ?? "cocktailDetail.title")
-        .padding(.bottom, safeAreaInsets.bottom != 0 ? 0 : -8) ///ScrollView flush with the bottom screen
-        .edgesIgnoringSafeArea(.bottom) ///Allows scrolling under the home indicator
+        .baseViewStyle(tabBar: .hidden, toolBarTitle: cocktail.strDrink ?? "cocktailDetail.title", shouldScrollUnderHomeIndicator: true, bottomPadding: safeAreaInsets.bottom == 0 ? AppStyle.VerticalPadding.zero : AppStyle.VerticalPadding.small)
         .onAppear {
             lookup()
         }

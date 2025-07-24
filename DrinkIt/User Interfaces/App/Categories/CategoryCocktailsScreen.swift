@@ -55,9 +55,7 @@ struct CategoryCocktailsScreen: View {
                 EmptyView()
             }
         }
-        .baseViewStyle(tabBar: .hidden, toolBarTitle: title)
-        .padding(.bottom, safeAreaInsets.bottom != 0 ? 0 : -8) ///ScrollView flush with the bottom screen
-        .edgesIgnoringSafeArea(.bottom) ///Allows scrolling under the home indicator
+        .baseViewStyle(tabBar: .hidden, toolBarTitle: title, shouldScrollUnderHomeIndicator: true, bottomPadding: safeAreaInsets.bottom == 0 ? AppStyle.VerticalPadding.zero : AppStyle.VerticalPadding.small)
         .if(cocktaildbState.requestStatus == .success || cocktaildbState.requestStatus == .unknown) {
             $0
                 .searchable(text: $searchText)

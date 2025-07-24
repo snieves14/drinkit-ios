@@ -48,6 +48,23 @@
         }
       }
     },
+    "blankData.title.myIngredients" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter an ingredient to discover the cocktails you can make with it"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce un ingrediente para descubrir los cócteles que puedes preparar con él"
+          }
+        }
+      }
+    },
     "blankData.title.primary" : {
       "localizations" : {
         "en" : {
@@ -433,6 +450,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mis cocktails"
+          }
+        }
+      }
+    },
+    "myIngredients.search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter an ingredient…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce un ingrediente…"
           }
         }
       }
